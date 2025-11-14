@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Eed_B_Eed</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="~/Admin/css/Dash_Layout.css" asp-append-version="true" />
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+		  rel="stylesheet" />
+	@RenderSection("Styles", required: false)
+</head>
+
+<body class="theme-dark">
+	<div class="layout">
+		<!-- Sidebar -->
+		<aside class="sidebar">
+			<div class="brand">
+				<div class="avatar"
+					 style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB8LvW0OXD5AfGJnUemaBqjKDyo4ZR7sT_OgXOATZCZ2piDzqTMWA-CFZh-djzqKNSwnIsMJH1w1jULsXZtPSnulKhC4yCQS_nuLHBciY85MwBbhtaKME_OycEJmx5b6Nlsk_sfmB7axMXb3RDZoCqX9lfm898DCuiH9hBuCTIjabRghOWTkxIo3ExQH824DBlD9zOCUTu3_YV5suNry_JdqhU72bjADNIj086LE-JlzS3T7W-vYHHyb9nj4IeXQZwWR7N-PXgcoE4t');"></div>
+				<h1 class="brand-title">Eed By Eed</h1>
+			</div>
+
+            @{
+                // Local helper: returns " is-active" when current route matches provided area/controller/action
+                string Active(string? area, string? controller, string? action = null)
+                {
+                    var currentArea = (ViewContext.RouteData.Values["area"] as string) ?? string.Empty;
+                    var currentController = (ViewContext.RouteData.Values["controller"] as string) ?? string.Empty;
+                    var currentAction = (ViewContext.RouteData.Values["action"] as string) ?? string.Empty;
+
+                    bool matches = string.Equals(area ?? string.Empty, currentArea, StringComparison.OrdinalIgnoreCase)
+                                    && string.Equals(controller ?? string.Empty, currentController, StringComparison.OrdinalIgnoreCase)
+                                    && (action == null || string.Equals(action, currentAction, StringComparison.OrdinalIgnoreCase));
+
+                    return matches ? " is-active" : string.Empty;
+                }
+            }
+
+			<nav class="nav">
+				<ul class="nav-list">
+					<li>
+						<a class="nav-link@(Active("Admin","Dashboard","Index"))" asp-area="Admin"
+						   asp-controller="Dashboard"
+						   asp-action="Index">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
+								<path d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.48.11-.11a16,16,0,0,1,21.53,0,1.14,1.14,0,0,0,.11.11l80,75.48A16,16,0,0,1,224,115.55Z"></path>
+							</svg>
+							<span>Dashboard</span>
+						</a>
+					</li>
+					<li>
+						<a class="nav-link@(Active("Admin", "DashboardUser", "Index"))"
+						   asp-area="Admin"
+						   asp-controller="DashboardUser"
+						   asp-action="Index">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
+								<path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"></path>
+							</svg>
+							<span>Users</span>
+						</a>
+					</li>
+
+					<li>
+						<a class="nav-link" href="#">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
+								<path d="M216,56H176V48a24,24,0,0,0-24-24H104A24,24,0,0,0,80,48v8H40A16,16,0,0,0,24,72V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V72A16,16,0,0,0,216,56ZM96,48a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96ZM216,72v41.61A184,184,0,0,1,128,136a184.07,184.07,0,0,1-88-22.38V72Zm0,128H40V131.64A200.19,200.19,0,0,0,128,152a200.25,200.25,0,0,0,88-20.37V200ZM104,112a8,8,0,0,1,8-8h32a8,8,0,0,1,0,16H112A8,8,0,0,1,104,112Z"></path>
+							</svg>
+							<span>Services</span>
+						</a>
+					</li>
+					<li>
+						<a class="nav-link" href="#">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
+								<path d="M213.66,181.66l-32,32a8,8,0,0,1-11.32-11.32L188.69,184H48a8,8,0,0,1,0-16H188.69l-18.35-18.34a8,8,0,0,1,11.32-11.32l32,32A8,8,0,0,1,213.66,181.66Zm-139.32-64a8,8,0,0,0,11.32-11.32L67.31,88H208a8,8,0,0,0,0-16H67.31L85.66,53.66A8,8,0,0,0,74.34,42.34l-32,32a8,8,0,0,0,0,11.32Z"></path>
+							</svg>
+							<span>Exchanges</span>
+						</a>
+					</li>
+					<li>
+						<a class="nav-link" href="#">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
+								<path d="M239.2,97.29a16,16,0,0,0-13.81-11L166,81.17,142.72,25.81h0a15.95,15.95,0,0,0-29.44,0L90.07,81.17,30.61,86.32a16,16,0,0,0-9.11,28.06L66.61,153.8,53.09,212.34a16,16,0,0,0,23.84,17.34l51-31,51.11,31a16,16,0,0,0,23.84-17.34l-13.51-58.6,45.1-39.36A16,16,0,0,0,239.2,97.29Zm-15.22,5-45.1,39.36a16,16,0,0,0-5.08,15.71L187.35,216v0l-51.07-31a15.9,15.9,0,0,0-16.54,0l-51,31h0L82.2,157.4a16,16,0,0,0-5.08-15.71L32,102.35a.37.37,0,0,1,0-.09l59.44-5.14a16,16,0,0,0,13.35-9.75L128,32.08l23.2,55.29a16,16,0,0,0,13.35,9.75L224,102.26S224,102.32,224,102.33Z"></path>
+							</svg>
+							<span>Reviews</span>
+						</a>
+					</li>
+					<li>
+						<a class="nav-link" href="#">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
+								<path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"></path>
+							</svg>
+							<span>Settings</span>
+						</a>
+					</li>
+					<li>
+						<a class="nav-link" href="#">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+								<path d="M128,216a8,8,0,0,1,0,16H64a32,32,0,0,1-32-32V56A32,32,0,0,1,64,24h64a8,8,0,0,1,0,16H64A16,16,0,0,0,48,56V200a16,16,0,0,0,16,16Zm105.66-96-40-40a8,8,0,1,0-11.32,11.32L204.69,120H120a8,8,0,0,0,0,16h84.69l-22.35,22.34a8,8,0,1,0,11.32,11.32l40-40A8,8,0,0,0,233.66,120Z"></path>
+							</svg>
+							<form action="/Account/Logout" method="post" class="menu__item">
+								@Html.AntiForgeryToken()
+								<button type="submit" class="menu__label">Logout</button>
+							</form>
+						</a>
+					</li>
+				</ul>
+			</nav>
+
+			<div class="help">
+				<a class="nav-link" href="#">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
+						<path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+					</svg>
+					<span>Help &amp; Docs</span>
+				</a>
+			</div>
+		</aside>	
+
+
+		<main class="main">
+            @RenderBody()
+		</main>
+	</div>
+	@RenderSection("Scripts", required: false)
+
+</body>
+</html>

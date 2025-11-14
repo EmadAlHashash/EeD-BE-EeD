@@ -1,0 +1,335 @@
+﻿/* Layout */
+.page-root {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px; /* tighter overall page padding */
+    overflow: hidden;
+    background: var(--bg);
+    /* spacing from fixed navbar and footer */
+    margin-top:3rem; /* space below navbar */
+    margin-bottom: 3rem; /* space above footer */
+}
+
+    .page-root .particles {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 3;
+        pointer-events: none;
+    }
+
+    .page-root .form-wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 560px; /* smaller default width */
+        /* normal width */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .page-root .header {
+        text-align: center;
+        margin-bottom: 1.25rem; /* less space below title */
+    }
+
+        .page-root .header h1 {
+            font-size: clamp(1.4rem, 1.8vw, 2rem); /* slightly smaller heading */
+            margin: 0;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .page-root .header p {
+            margin-top: 0.35rem; /* tighter lead spacing */
+            color: var(--muted);
+        }
+
+    .page-root .card {
+        width: 100%;
+        border-radius: 10px; /* slightly smaller radius */
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        padding: 1.25rem; /* tighter inner padding */
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        box-shadow: var(--card-shadow);
+    }
+
+    /* Upload */
+    .page-root .upload {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.75rem; /* less space under avatar */
+    }
+
+    .page-root .avatar-upload {
+        width: 80px; /* smaller avatar */
+        height: 80px;
+        border-radius: 999px;
+        border: 2px dashed var(--primary);
+        display: grid;
+        place-items: center;
+        color: var(--primary);
+        background: transparent;
+        cursor: pointer;
+        position: relative;
+        transition: background-color 0.3s ease;
+    }
+
+        .page-root .avatar-upload:hover {
+            background: rgba(249, 180, 6, 0.08);
+        }
+
+        .page-root .avatar-upload.has-image {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-style: solid;
+        }
+
+            .page-root .avatar-upload.has-image .material-symbols-outlined {
+                opacity: 0;
+            }
+
+        .page-root .avatar-upload::after {
+            content: "";
+            position: absolute;
+            inset: -4px;
+            border-radius: inherit;
+            border: 2px solid var(--primary);
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .page-root .avatar-upload:hover::after {
+            opacity: 0.5;
+            transform: scale(1);
+        }
+
+        .page-root .avatar-upload .material-symbols-outlined {
+            font-size: 36px; /* scale icon with smaller avatar */
+            line-height: 1;
+        }
+
+    /* Form */
+    .page-root .form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem; /* tighter field spacing */
+    }
+
+        /* Make fields equal width and side-by-side on larger screens */
+        .page-root .form > .field {
+            flex: 1 1 100%;
+        }
+
+        /* Ensure non-field items take full width rows */
+        .page-root .form > .agree,
+        .page-root .form > .upload,
+        .page-root .form > .buttonss,
+        .page-root .form > .footnote {
+            flex: 1 1 100%;
+        }
+
+@media (min-width: 768px) {
+    .page-root .form > .field {
+        /* Two columns with gap awareness */
+        flex: 0 1 calc((100% - 0.9rem) / 2);
+    }
+}
+
+
+
+.page-root .field {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-root .label {
+    font-size: 0.9rem; /* slightly smaller labels */
+    font-weight: 600;
+    color: #fff;
+    padding-bottom: 0.4rem; /* tighter label spacing */
+}
+
+.page-root .input {
+    width: 100%;
+    height: 40px; /* smaller field height */
+    border-radius: 8px; /* smaller radius */
+    border: 1px solid var(--border);
+    background: transparent;
+    color: #fff;
+    padding: 0 10px; /* tighter horizontal padding */
+    font-size: 0.98rem; /* slightly smaller font */
+    outline: none;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+    .page-root .input::placeholder {
+        color: #6b7280;
+    }
+
+    .page-root .input:focus {
+        box-shadow: 0 0 0 2px var(--primary);
+        border-color: var(--primary);
+        background: rgba(229, 184, 72, 0.08);
+    }
+
+.page-root .select {
+    padding-right: 36px; /* adjust for smaller caret */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* Reliable custom caret using inline SVG */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+}
+
+    /* Dropdown list (options) styling - use theme variables */
+    .page-root .select option,
+    .page-root .select optgroup {
+        background-color: var(--bg-dark);
+        color: var(--text);
+        border: 0;
+        outline: none;
+    }
+
+        /* Highlighted/hovered/selected item styles (browser support may vary) */
+        .page-root .select option:hover,
+        .page-root .select option:focus,
+        .page-root .select option:checked {
+            background-color: var(--primary-2);
+            color: var(--text-dark);
+            border: 0;
+            outline: none;
+        }
+
+        /* Disabled options look muted */
+        .page-root .select option:disabled {
+            color: var(--text-muted-dark);
+            background-color: var(--bg-dark);
+            border: 0;
+        }
+
+.page-root .agree {
+    display: flex;
+    align-items: center;
+    gap: 4px; /* tighter gap */
+    color: #d1d5db;
+    font-size: 0.9rem; /* slightly smaller */
+}
+
+    .page-root .agree input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--primary);
+    }
+
+.page-root .link {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    .page-root .link:hover {
+        text-decoration: underline;
+    }
+
+.page-root .btn--primary {
+    height: 42px; /* smaller button height */
+    width: 100%;
+    border-radius: 8px;
+    padding: 0 16px; /* slightly less padding */
+    font-weight: 700;
+    letter-spacing: .015em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* tighter icon gap */
+    cursor: pointer;
+    border: none;
+    transition: box-shadow .25s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.btn--primary {
+    color: #000;
+    background-image: linear-gradient(90deg, var(--primary), #c88805);
+}
+
+    .btn--primary:hover {
+        box-shadow: var(--shadow-gold-hover);
+    }
+
+.page-root .buttonss:active {
+    transform: translateY(1px);
+}
+
+.page-root .footnote {
+    padding-top: 0.75rem; /* less spacing above footnote */
+    text-align: center;
+    font-size: 0.88rem; /* slightly smaller */
+    color: var(--muted);
+    margin: 0;
+}
+
+    .page-root .footnote .link {
+        font-weight: 700;
+    }
+
+/* Validation (ASP.NET) */
+.page-root .text-danger {
+    color: #fca5a5 !important; /* soft red for dark theme */
+    font-size: 0.88rem; /* slightly smaller */
+    margin-top: -0.25rem;
+}
+
+.page-root .field .text-danger {
+    display: block;
+    min-height: 1em; /* keep layout stable when empty */
+}
+
+.page-root .text-danger ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1rem;
+}
+
+.page-root .text-danger li {
+    margin: 0.25rem 0;
+}
+
+/* Particles */
+@keyframes gold-particles {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.page-root .gold-particle {
+    position: absolute;
+    background: var(--primary);
+    border-radius: 999px;
+    animation: gold-particles 18s linear infinite;
+    will-change: transform, opacity;
+}
+
+/* Laptop tweaks (still normal size) */
+@media (min-width: 1024px) {
+    .page-root .form-wrapper {
+        max-width: 620px; /* smaller on laptops/desktops */
+    }
+}

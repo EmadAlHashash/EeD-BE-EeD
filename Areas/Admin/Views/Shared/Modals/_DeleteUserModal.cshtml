@@ -1,0 +1,28 @@
+﻿@section Styles {
+	<link rel="stylesheet" href="~/Admin/css/DashboardUser.css" asp-append-version="true" />
+}
+
+<div class="modal" id="deleteUserModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="deleteUserTitle">
+	<div class="modal__backdrop" data-close-modal></div>
+	<div class="modal__dialog modal__dialog--sm" role="document">
+		<header class="modal__header">
+			<h3 class="modal__title" id="deleteUserTitle">Delete User</h3>
+			<button class="iconbtn" aria-label="Close" type="button" data-close-modal>
+				<span class="material-symbols-outlined">close</span>
+			</button>
+		</header>
+		<div class="modal__body">
+			<p>This action cannot be undone. Delete <strong id="deleteUserName"></strong>?</p>
+			<form method="post" style="display:none">
+				@Html.AntiForgeryToken()
+			</form>
+		</div>
+		<footer class="modal__footer">
+			<button class="um-btn" type="button" data-close-modal>Cancel</button>
+			<button class="um-btn um-btn--danger" type="button" data-admin-action="delete" data-user-id="">
+				<span class="material-symbols-outlined um-btn__icon">delete</span>
+				<span>Delete</span>
+			</button>
+		</footer>
+	</div>
+</div>

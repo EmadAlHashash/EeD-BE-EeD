@@ -1,0 +1,124 @@
+﻿@model EeD_BE_EeD.Areas.Admin.ViewModels.DashboardViewModel
+@{
+	ViewData["Title"] = "Dashboard Home";
+}
+@section Styles {
+	<link rel="stylesheet" href="~/Admin/css/Home.css" asp-append-version="true" />
+}
+<div class="main-inner">
+	<header class="page-header">
+		<h1>Welcome, @Model.CurrentUserFullName 👋</h1>
+	</header>
+
+	<!-- KPI Cards -->
+	<section class="cards">
+		<article class="card">
+			<h2 class="card-meta">Total Users</h2>
+			<p class="card-value">@Model.TotalUsers</p>
+			<p class="card-delta card-delta--up">+10%</p>
+		</article>
+		<article class="card">
+			<h2 class="card-meta">Active Services</h2>
+			<p class="card-value">@Model.ActiveServices</p>
+			<p class="card-delta card-delta--up">+5%</p>
+		</article>
+		<article class="card">
+			<h2 class="card-meta">Pending Exchanges</h2>
+			<p class="card-value">@Model.PendingExchanges</p>
+			<p class="card-delta card-delta--down">-2%</p>
+		</article>
+		<article class="card">
+			<h2 class="card-meta">New Reviews (7d)</h2>
+			<p class="card-value">@Model.NewReviews</p>
+			<p class="card-delta card-delta--up">+8%</p>
+		</article>
+	</section>
+
+	<!-- Overview + Activities -->
+	<section class="overview">
+		@* <div class="overview-left">
+			<h2 class="section-title">Overview</h2>
+			<pre>@System.Text.Json.JsonSerializer.Serialize(Model.NewUsersPerMonth)</pre>
+
+			<div class="overview-grid">
+				<!-- 🟢 الشارت الأول: المستخدمين الجدد شهريًا -->
+				<article class="card">
+					<p class="card-meta strong">New Users per Month</p>
+					<canvas id="usersChart"></canvas>
+				</article>
+
+				<!-- 🟢 الشارت الثاني: الخدمات النشطة حسب الفئة -->
+				<article class="card">
+					<p class="card-meta strong">Active Services per Category</p>
+					<canvas id="servicesChart"></canvas>
+				</article>
+			</div>
+		</div> *@
+		<div class="overview-left">
+			<h2 class="section-title">Overview</h2>
+			<div class="overview-grid">
+				<article class="card">
+					<p class="card-meta strong">New Users per Month</p>
+					<div class="chart-line">
+						<svg width="100%" height="100%" viewBox="0 0 472 150" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="#f9b406" stroke-width="3" stroke-linecap="round" />
+							<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V150H0V109Z" fill="url(#g1)" />
+							<defs>
+								<linearGradient id="g1" x1="236" y1="1" x2="236" y2="150" gradientUnits="userSpaceOnUse">
+									<stop stop-color="#f9b406" stop-opacity="0.3" />
+									<stop offset="1" stop-color="#f9b406" stop-opacity="0" />
+								</linearGradient>
+							</defs>
+						</svg>
+					</div>
+				</article>
+				<article class="card">
+					<p class="card-meta strong">Active Services per Category</p>
+					<div class="bars">
+						<div class="bar" style="height: 50%"></div>
+						<div class="bar" style="height: 40%"></div>
+						<div class="bar" style="height: 70%"></div>
+						<div class="bar" style="height: 10%"></div>
+					</div>
+					<div class="bars-labels">
+						<p>Design</p>
+						<p>Tech</p>
+						<p>Marketing</p>
+						<p>Finance</p>
+					</div>
+				</article>
+			</div>
+		</div>
+
+		<aside class="activities">
+			<h2 class="section-title">Recent Activities</h2>
+			<div class="timeline">
+				<ul class="timeline-list">
+					@foreach (var activity in Model.RecentActivities)
+					{
+						<li class="timeline-item">
+							<div class="timeline-row">
+								<span class="timeline-icon">
+									@Html.Raw(activity.IconSvg)
+								</span>
+								<div class="timeline-content">
+									<p class="timeline-title">@activity.Description</p>
+									<p class="timeline-time">@activity.TimeAgo</p>
+								</div>
+							</div>
+							<span class="timeline-line"></span>
+						</li>
+					}
+			
+				</ul>
+			</div>
+		</aside>
+	</section>
+</div>
+@section Scripts {
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+}
+
+
+<script src="~/Admin/js/home.js" asp-append-version="true"></script>

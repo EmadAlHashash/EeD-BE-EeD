@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+}
+
+
+<section class="hero" style='background-image: linear-gradient(rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCDNYf_U5bZ_XpfM3tGqQCh8KU-7VDG3aqDizTffDLz7MadtoHbYklzkIHPtbPAxfmYyw74Xzbpgv6Pv95uGaiDoZBdwBQ39vW4HxQr7d1qeIZP3I7ZL_eP8xKwtcsj6fqW84WUKWqnKjNTABLVP_4vBfpnP0vEGvIYjKFICCZ2u8LYqNjn0Ru4HbHda74xNThRNB9QNmGD7AwXCSwffNu4RNEU880q3HllQnUwYGpQESQC_CmsvQu8gHW0ZRBT20NyTiMCtqDOVsO-");'>
+    <div class="container inner">
+        <h1>Exchange Skills, Not Money</h1>
+        <p>Connect with a community of talented individuals to trade skills and services without spending a dime.</p>
+        <a asp-area="Identity" asp-page="/Account/Register">
+            <button class="btn" type="button"><span class="truncate">Join for Free</span></button>
+        </a>
+    </div>
+</section>
+
+<!-- Steps -->
+<section class="section">
+    <div class="container">
+        <div class="heading">
+            <h2>Simple Steps to Skill Sharing</h2>
+            <p>Our platform makes it easy to connect and exchange skills with others.</p>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="icon"><span class="material-symbols-outlined" style="font-size:30px">edit</span></div>
+                <h3>Create Your Profile</h3>
+                <p>Sign up and showcase your skills and services.</p>
+            </div>
+            <div class="step">
+                <div class="icon"><span class="material-symbols-outlined" style="font-size:30px">search</span></div>
+                <h3>Find a Match</h3>
+                <p>Browse or post a request to find someone with the skills you need.</p>
+            </div>
+            <div class="step">
+                <div class="icon"><span class="material-symbols-outlined" style="font-size:30px">handshake</span></div>
+                <h3>Exchange Skills</h3>
+                <p>Connect and exchange your skills directly with other members.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured -->
+<section class="section" style="padding-top:5rem; padding-bottom:5rem;">
+    <div class="container">
+        <h2 class="heading"><span style="display:block; font-size:inherit; font-weight:inherit; color:inherit;">Featured Skill Exchanges</span></h2>
+        <div class="tiles">
+            <div class="tile">
+                <div class="img" style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuC3oHdLozYjt1PxE4xWDDMjRzKuekYk3yJjLVRT_pLict_mAaU8ZrpZmNFntURj7S4JbuMecodJNJUJH9Xt58LRnGo6Rt2oxLPVvnNPDXZIC6y4ggqsy2FPJ60K6Uy7huADpfomBcxI9El4b6dKhifpYBABd6-hBTdNYD4H2FuJeP4VllX7fXZXuDXyM6x-zjI4TnXSk0X_jpypJUI1VKsYKT7dmCHTLBil2ybYJ6O2x0BjaHJYG1VeXEk6itAtEsN4DHW6FneES1gP");'></div>
+                <p class="caption">Photography for Web Design</p>
+            </div>
+            <div class="tile">
+                <div class="img" style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGIAb78FIPegg-90g3fpbT3uRz-NWNcxfY1vkpZJvORGfO2AGdwhACfglbNcdssQQdaT2qtbxTnnKHYviy-QmBA49g6FIr5mfWbKIXW-pIl2dFQhxodvYXwIkR45OYbOp5dAcy4QfIWc7Uxm6YrzSjMcli0sWAy85c_bnzhfgbCfLwNHcpQ6LDGB_Ch_PgNXf-onBIeCv5ra5J6ndxGPw5nXB2c-tgq4V8Q0XIOhu96YJJ7WD0zm9or2FMSTtp9hX_-gkxIj9TSnhE");'></div>
+                <p class="caption">Tutoring for Language Exchange</p>
+            </div>
+            <div class="tile">
+                <div class="img" style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuA_MurIqu6k4HTNh2wDlcd4eJJNYIsv3x-6HGUrNE7tFEmqmYqPQVW5DCWxQEaIArojairD_w9UmZqA5bOv6zQk2oJAfpvDW_tg4R3GRmEbaYePQy4gTIydjuuRRS878hsewGfuTjhmZmowNI7Bm9X-ldn4LcfLodWdhDMcWIHqNf7yiS1drq6j3xkQaKVMfda6A5Sva8wuGtJaAOzCLYRN3iJVQAodZ7TBpxgqW4McTA4kI5Yo9AYjhsYHaUCbXSDMYWl9ZkC6fxZS");'></div>
+                <p class="caption">Cooking Lessons for Fitness Training</p>
+            </div>
+            <div class="tile">
+                <div class="img" style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuCYTsjhG7_KEuaulZqho3ZfG2iSy9GH0t5IuuH8uktg2KgkxEJzBby-LtLHBKaHi6dKxGwaF4Zq2qNRPv3G3uwxjhSeKP2_yruwGcQ9kEs4Z5Z35Kfo5QEFwMJpvN7jQKYMow3remGsyb1Qo_WaMjSyvHJgdAv43EWtZtgm10aXUHm_XWErxav4jiXvcCQ8nHwmkS-Hd_4z2ouWR89cdkmL9wpLFIwT-Rz9QWd_SOZ7SqymSHblnB2LJR_PzFLG-9pkPobbFSa3o3zt");'></div>
+                <p class="caption">Graphic Design for Marketing</p>
+            </div>
+            <div class="tile">
+                <div class="img" style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuDgfNv7SXTV_4G9Ss6Z-VlZFGc1pZKaf7xHR0Srw_dxF3FkVJILXv5F6LawPTQ5j876qsDcs0sNYe7GtNPHEFtgP6yEKJJ2RoiwzW0mnbveM-Yxu2WV20buGDcpxHh3NqfpSE7KJTWe5TgseRhSyw6MGdzG-mifheSBk0kizg7uaB6MKuimyY-IlV6U8hDuqe3X_oeLRngVGoKNGL2Edjfwsi1YIT917Mlk8wEHFAm-KdwTj7yqzrCrckdBm43rrIJswU8JwA3XNNtr");'></div>
+                <p class="caption">Music Lessons for Photography</p>
+            </div>
+            <div class="tile">
+                <div class="img" style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuBjS1TYEbf_4P9n_DZIYtpCAobTGAA3JVVAIciRYTBXeK42rvOFaOTdtXTsL33XPhS2FE79YgUpvOJnIv1DJ-3QeJz1ed8Dpfaw6JbAyBIFTWIOUb5n7riu6kNBH1_Sl9iMT7tcF6NZbgtp5BeQTZDF0onJNsq_LH2Un0Cy56O7fs4rZiuiRTE-PVgaSn5Yc0ggeLnYGBOm2CLaGl4RzdG2pCmuzVVFA5wpid3XGt22kmLb_HBJfJQ0aOQXLTvDfg49vNYjOsTyL8q6");'></div>
+                <p class="caption">Personal Training for Web Dev</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section">
+    <div class="container">
+        <h2 class="heading"><span style="display:block; font-size:inherit; font-weight:inherit; color:inherit;">What Our Members Say</span></h2>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <div class="avatar" style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuDPYLkJ_WaP7TrhPAW2f3pK9XhjiC8pFsG0Uy2ZvIp-zb4K3j-V-BDQm-mz6SqZNSId42AUEYWYa4m1QrWxvvzXXxTZc1Cqh-y3Aiv5_2qeXkOexn1h5-eR7tUBZuquA5_9PzOvHGc7UwfF2UclYsC22k-DworojelmeGxqXqt6PiaVW2MT0OC63-Zoa-p-aonLbxLUPqEcdv6pZEVMCA9bGXPSlnNXOWwA13r8D8sj4chgkXURyV34y1NMFS8u2XdP0BF99wk04PDU");'></div>
+                <blockquote>"SkillSwap has transformed how I learn and share. I've gained new skills and made great connections!"</blockquote>
+                <cite>Sophia Carter, Photographer</cite>
+            </div>
+            <div class="testimonial">
+                <div class="avatar" style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuCyLVLmwVGiOEPGWoF6eRM5V-pAqj1OG_Us_pJcUkGsmR-ScC_Bo5enCU2q5vQt4KyxC7XLClfphOxK06B7MKmmy-l8eecOTXcY12b8zZTzRLqA1AzNbCTf4ZBF1Ic3_qlTcRIaLR-cAi2NZPtXmDZzaEDv2Zgq_7Lh9eez9l8-gb-8E6h5jrKVraecZerH6UlDZLNjjILZksfKlGTh1alGx8DOD65T2PwtM7wSyQYXb4iKsNCGbfojiV7q-GN6RuOI65R8OJFsx5hq");'></div>
+                <blockquote>"I love the concept of exchanging skills without money. It's a fantastic way to grow and help others."</blockquote>
+                <cite>Ethan Bennett, Tutor</cite>
+            </div>
+            <div class="testimonial">
+                <div class="avatar" style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuCoPFUwker7u8th-ujgex4koeZPyXPHnYqQqOcHTVIdy0EQQsKWuQ5lxdKMAo2Tt-FvpjjRYWOyDkMYojbCJgHe5L7o_o9qkLPXweZufvJT15zLcOZHs3ClhdY9mwjBs8tpLHQs4WcbEDoInbc5F0oMr04FeGb5DnFsIxSkaiLsLhT2Ie56ELm3mX_geUftoj5OysvWJTRBvfnSkjUlczkinXK5BPHPqeXnOQBQM2S1E03ixWYWXMNMmxXTaZDAo_zt8ukwdpoZAmOc");'></div>
+                <blockquote>"The platform is user-friendly and the community is supportive. I've found amazing skill exchanges here."</blockquote>
+                <cite>Olivia Hayes, Designer</cite>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta">
+    <div class="container inner">
+        <h2>Ready to Start Exchanging Skills?</h2>
+        <p>Join our community today and unlock a world of skill sharing without any cost.</p>
+        <a asp-area="Identity" asp-page="/Account/Register">
+            <button class="btn" type="button"><span class="truncate">Join for Free</span></button>
+        </a>
+    </div>
+</section>

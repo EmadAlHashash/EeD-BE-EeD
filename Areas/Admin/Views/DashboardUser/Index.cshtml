@@ -1,0 +1,230 @@
+﻿@model EeD_BE_EeD.Areas.Admin.ViewModels.UsersListViewModel
+@{
+	ViewData["Title"] = "Dashboard Users Management";
+	var qSearch = (string?)ViewData["search"] ?? string.Empty;
+	var qStatus = (string?)ViewData["status"] ?? string.Empty;
+	var qRole = (string?)ViewData["role"] ?? string.Empty;
+	var totalUsers = (int)(ViewData["totalUsers"] ?? 0);
+	var safePage = Math.Max(1, Model.CurrentPage);
+	var from = totalUsers == 0 ? 0 : (safePage - 1) * Model.PageSize + 1;
+	var to = totalUsers == 0 ? 0 : Math.Min(safePage * Model.PageSize, totalUsers);
+}
+@section Styles {
+	<link rel="stylesheet" href="~/Admin/css/DashboardUser.css" asp-append-version="true" />
+	<style>
+		/* Highlight banned users */
+		.table .row.row--banned { background-color: #FDE8E8; }
+		.table .row.row--banned td { border-color: #F8CACA; }
+		.pager__page--active { pointer-events: none; }
+		.pager__edge.is-disabled { pointer-events: none; opacity: .5; }
+		.pager__dots { padding: 0 .5rem; color: #888; }
+	</style>
+}
+<!-- Main -->
+<main class="main">
+	<header class="topbar topbar--centered">
+		<h2 class="topbar__title">Users Management</h2>
+
+	</header>
+
+	<div class="content">
+		<section class="card">
+			<!-- Toolbar -->
+			<div class="toolbar">
+				<form class="search" method="get">
+					<span class="material-symbols-outlined search__icon">search</span>
+					<input type="text"
+						   class="search__input"
+						   name="search"
+						   value="@qSearch"
+						   placeholder="Search by Name, Email..." />
+					<input type="hidden" name="role" value="@qRole" />
+					<input type="hidden" name="status" value="@qStatus" />
+					<input type="hidden" name="page" value="1" />
+				</form>
+				<div class="filters">
+					<form method="get" id="filtersForm">
+						<input type="hidden" name="search" value="@qSearch" />
+						<select class="select" name="role" onchange="this.form.submit()">
+							<option value="" selected="@(string.IsNullOrEmpty(qRole) ? "selected" : null)">Role: All</option>
+							<option value="Admin" selected="@((qRole=="Admin") ? "selected" : null)">Admin</option>
+							<option value="User" selected="@((qRole=="User") ? "selected" : null)">User</option>
+							<option value="SuperAdmin" selected="@((qRole=="SuperAdmin") ? "selected" : null)">SuperAdmin</option>
+						</select>
+						<select class="select" name="status" onchange="this.form.submit()">
+							<option value="" selected="@(string.IsNullOrEmpty(qStatus) ? "selected" : null)">Status: All</option>
+							<option value="Active" selected="@((qStatus=="Active") ? "selected" : null)">Active</option>
+							<option value="Inactive" selected="@((qStatus=="Inactive") ? "selected" : null)">Inactive</option>
+							<option value="Banned" selected="@((qStatus=="Banned") ? "selected" : null)">Banned</option>
+						</select>
+						<input type="hidden" name="page" value="1" />
+					</form>
+					<button class="um-btn um-btn--primary" type="button" data-open-modal="#addUserModal" data-user-action="add">
+						<span class="material-symbols-outlined um-btn__icon">add</span>
+						<span>Add User</span>
+					</button>
+				</div>
+			</div>
+
+			<!-- Table -->
+			<div class="tablewrap">
+				<table class="table">
+					<thead class="table__head">
+						<tr>
+							<th scope="col">Avatar</th>
+							<th scope="col">Full Name</th>
+							<th scope="col">Email</th>
+							<th scope="col">Role</th>
+							<th scope="col">Status</th>
+							<th class="ta-right" scope="col">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var user in Model.Users)
+						{
+							var banned = string.Equals(user.Status, "Banned", StringComparison.OrdinalIgnoreCase);
+							<tr class="row @(banned ? "row--banned" : null)">
+								<td>
+									<div class="avatar avatar--md"
+											 style='background-image: url("@user.AvatarUrl");'></div>
+								</td>
+								<td class="cell--name">@user.FullName</td>
+								<td>@user.Email</td>
+								<td>
+									<span class="badge badge--role-admin">@user.Role</span>
+								</td>
+								<td>
+									<span class="badge badge--status-active">@user.Status</span>
+								</td>
+								<td class="ta-right">
+									<button class="iconbtn iconbtn--muted" aria-label="View" data-user-action="view" data-open-modal="#viewUserModal" data-user-id="@user.Id">
+										<span class="material-symbols-outlined iconbtn__icon">visibility</span>
+									</button>
+									<button class="iconbtn iconbtn--muted" aria-label="Edit" data-user-action="edit" data-open-modal="#editUserModal" data-user-id="@user.Id">
+										<span class="material-symbols-outlined iconbtn__icon">edit</span>
+									</button>
+									@if (banned) {
+										<button class="iconbtn iconbtn--warning" aria-label="Unblock" data-admin-action="unblock" data-user-id="@user.Id">
+											<span class="material-symbols-outlined iconbtn__icon">lock_open_right</span>
+										</button>
+									} else {
+										<button class="iconbtn iconbtn--danger" aria-label="Block" data-admin-action="block" data-open-modal="#blockUserModal" data-user-id="@user.Id">
+											<span class="material-symbols-outlined iconbtn__icon">block</span>
+										</button>
+									}
+									<button class="iconbtn iconbtn--danger" aria-label="Delete" data-admin-action="delete" data-open-modal="#deleteUserModal" data-user-id="@user.Id">
+										<span class="material-symbols-outlined iconbtn__icon">delete</span>
+									</button>
+							</td>
+						</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+
+			<!-- Pagination -->
+			<div class="pagination">
+				<span class="pagination__summary">
+					Showing <strong>@from</strong> to <strong>@to</strong> of
+					<strong>@totalUsers</strong> Entries
+				</span>
+				<div class="pager">
+					@{
+						var baseQuery = new Dictionary<string, string?>
+						{
+							{"search", qSearch},
+							{"status", qStatus},
+							{"role", qRole}
+						};
+						string qs(int pageNo)
+						{
+							var parts = new List<string>();
+							foreach (var kv in baseQuery)
+							{
+								if (!string.IsNullOrEmpty(kv.Value)) parts.Add($"{kv.Key}={Uri.EscapeDataString(kv.Value)}");
+							}
+							parts.Add($"page={pageNo}");
+							return string.Join("&", parts);
+						}
+
+						int last = Math.Max(1, Model.TotalPages);
+						int current = Math.Min(Math.Max(1, Model.CurrentPage), last);
+						int window = 1; // show current-1, current, current+1
+					}
+
+					@if (Model.CurrentPage > 1)
+					{
+						<a class="pager__edge" aria-label="Previous" href="?@qs(Model.CurrentPage - 1)">
+							<span class="material-symbols-outlined">chevron_left</span>
+						</a>
+					}
+					else
+					{
+						<span class="pager__edge is-disabled" aria-disabled="true">
+							<span class="material-symbols-outlined">chevron_left</span>
+						</span>
+					}
+
+					@if (Model.TotalPages <= 7)
+					{
+						for (var p = 1; p <= Model.TotalPages; p++)
+						{
+							var cls = p == Model.CurrentPage ? "pager__page pager__page--active" : "pager__page";
+							<a class="@cls" aria-current="@(p == Model.CurrentPage ? "page" : null)" href="?@qs(p)">@p</a>
+						}
+					}
+					else
+					{
+						{
+							var cls = 1 == Model.CurrentPage ? "pager__page pager__page--active" : "pager__page";
+							<a class="@cls" aria-current="@(1 == Model.CurrentPage ? "page" : null)" href="?@qs(1)">1</a>
+						}
+						@if (current - window > 2)
+						{
+							<span class="pager__dots">…</span>
+						}
+						for (var p = Math.Max(2, current - window); p <= Math.Min(last - 1, current + window); p++)
+						{
+							var cls = p == Model.CurrentPage ? "pager__page pager__page--active" : "pager__page";
+							<a class="@cls" aria-current="@(p == Model.CurrentPage ? "page" : null)" href="?@qs(p)">@p</a>
+						}
+						@if (current + window < last - 1)
+						{
+							<span class="pager__dots">…</span>
+						}
+						@if (last > 1)
+						{
+							var cls = last == Model.CurrentPage ? "pager__page pager__page--active" : "pager__page";
+							<a class="@cls" aria-current="@(last == Model.CurrentPage ? "page" : null)" href="?@qs(last)">@last</a>
+						}
+					}
+
+					@if (Model.CurrentPage < Model.TotalPages)
+					{
+						<a class="pager__edge" aria-label="Next" href="?@qs(Model.CurrentPage + 1)">
+							<span class="material-symbols-outlined">chevron_right</span>
+						</a>
+					}
+					else
+					{
+						<span class="pager__edge is-disabled" aria-disabled="true">
+							<span class="material-symbols-outlined">chevron_right</span>
+						</span>
+					}
+				</div>
+			</div>
+			<!-- hidden antiforgery token: ensure available for JS -->
+			<form method="post" style="display:none">
+				@Html.AntiForgeryToken()
+			</form>
+		</section>
+	</div>
+</main>
+
+@await Html.PartialAsync("Modals/_AddUserModal")
+@await Html.PartialAsync("Modals/_ViewUserModal")
+@await Html.PartialAsync("Modals/_EditUserModal")
+@await Html.PartialAsync("Modals/_BlockUserModal")
+@await Html.PartialAsync("Modals/_DeleteUserModal")
+
+<script src="~/Admin/js/dashboardUser.js" asp-append-version="true"></script>

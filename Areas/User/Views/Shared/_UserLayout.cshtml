@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+
+<html class="dark">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"] - Eed_B_Eed</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="~/User/css/layout.css" asp-append-version="true" />
+
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+	<div class="page">
+		<div class="page-col">
+			<!-- Header -->
+			<header class="header">
+				<div class="header-left">
+					<div class="brand">
+						<svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+							 fill="currentColor" aria-hidden="true">
+							<path d="M12 0L22.3923 6V18L12 24L1.6077 18V6L12 0ZM11 17V7.5L4.80385 11.25L11 17Z"></path>
+						</svg>
+						<h1 class="brand-name">SkillSwap</h1>
+					</div>
+
+					<button class="nav-toggle" id="open-nav" aria-label="Open navigation" aria-expanded="false"
+							aria-controls="primary-nav" type="button">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+							 aria-hidden="true">
+							<path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+							<path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+							<path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+						</svg>
+					</button>
+
+					<nav class="nav-links" id="primary-nav" aria-label="Primary">
+						<a href="#" class="nav-link">Dashboard</a>
+						<a href="#" class="nav-link">Services</a>
+						<a href="#" class="nav-link">Requests</a>
+						<a href="#" class="nav-link">Messages</a>
+					</nav>
+				</div>
+
+				<div class="toolbar">
+					<div class="search">
+						<input type="search" placeholder="Search" class="search-input" />
+						<div class="search-icon" aria-hidden="true">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256"
+								 fill="currentColor">
+								<path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z">
+								</path>
+							</svg>
+						</div>
+					</div>
+
+					<div class="notif">
+						<button class="notif__bell" aria-label="Open notifications" aria-expanded="false"
+								aria-controls="notif-popover" id="open-notif" type="button">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"
+								 fill="currentColor" aria-hidden="true">
+								<path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z">
+								</path>
+							</svg>
+						</button>
+
+						<div class="notif-popover" id="notif-popover" role="dialog" aria-modal="false"
+							 aria-labelledby="notif-title" hidden>
+							<div class="notif__card" role="document">
+								<div class="notif__header">
+									<h1 class="notif__title" id="notif-title">Notifications</h1>
+								</div>
+
+								<div class="notif__items">
+									<div class="notif__item">
+										<div class="notif__icon" aria-hidden="true">
+											<svg height="24px" width="24px" viewBox="0 0 256 256"
+												 xmlns="http://www.w3.org/2000/svg">
+												<path d="M228.44,89.34l-96-64a8,8,0,0,0-8.88,0l-96,64A8,8,0,0,0,24,96V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V96A8,8,0,0,0,228.44,89.34ZM96.72,152,40,192V111.53Zm16.37,8h29.82l56.63,40H56.46Zm46.19-8L216,111.53V192ZM128,41.61l81.91,54.61-67,47.78H113.11l-67-47.78Z">
+												</path>
+											</svg>
+										</div>
+										<div class="notif__content">
+											<p class="notif__label">New Message</p>
+											<p class="notif__desc">You have a new message from Alex.</p>
+										</div>
+										<p class="notif__time">2h</p>
+									</div>
+
+									<div class="notif__item">
+										<div class="notif__icon" aria-hidden="true">
+											<svg height="24px" width="24px" viewBox="0 0 256 256"
+												 xmlns="http://www.w3.org/2000/svg">
+												<path d="M119.76,217.94A8,8,0,0,1,112,224a8.13,8.13,0,0,1-2-.24l-32-8a8,8,0,0,1-2.5-1.11l-24-16a8,8,0,1,1,8.88-13.31l22.84,15.23,30.66,7.67A8,8,0,0,1,119.76,217.94Zm132.69-96.46a15.89,15.89,0,0,1-8,9.25l-23.68,11.84-55.08,55.09a8,8,0,0,1-7.6,2.1l-64-16a8.06,8.06,0,0,1-2.71-1.25L35.86,142.87,11.58,130.73a16,16,0,0,1-7.16-21.46L29.27,59.58h0a16,16,0,0,1,21.46-7.16l22.06,11,53-15.14a8,8,0,0,1,4.4,0l53,15.14,22.06-11a16,16,0,0,1,21.46,7.16l24.85,49.69A15.9,15.9,0,0,1,252.45,121.48Zm-46.18,12.94L179.06,80H147.24L104,122c12.66,8.09,32.51,10.32,50.32-7.63a8,8,0,0,1,10.68-.61l34.41,27.57Zm-187.54-18,17.69,8.85L61.27,75.58,43.58,66.73ZM188,152.66l-27.71-22.19c-19.54,16-44.35,18.11-64.91,5a16,16,0,0,1-2.72-24.82.6.6,0,0,1,.08-.08L137.6,67.06,128,64.32,77.58,78.73,50.21,133.46l49.2,35.15,58.14,14.53Zm49.24-36.24L212.42,66.73l-17.69,8.85,24.85,49.69Z">
+												</path>
+											</svg>
+										</div>
+										<div class="notif__content">
+											<p class="notif__label">New Offer</p>
+											<p class="notif__desc">You have a new offer from Sarah.</p>
+										</div>
+										<p class="notif__time">4h</p>
+									</div>
+
+									<div class="notif__item">
+										<div class="notif__icon" aria-hidden="true">
+											<svg height="24px" width="24px" viewBox="0 0 256 256"
+												 xmlns="http://www.w3.org/2000/svg">
+												<path d="M239.2,97.29a16,16,0,0,0-13.81-11L166,81.17,142.72,25.81h0a15.95,15.95,0,0,0-29.44,0L90.07,81.17,30.61,86.32a16,16,0,0,0-9.11,28.06L66.61,153.8,53.09,212.34a16,16,0,0,0,23.84,17.34l51-31,51.11,31a16,16,0,0,0,23.84-17.34l-13.51-58.6,45.1-39.36A16,16,0,0,0,239.2,97.29Zm-15.22,5-45.1,39.36a16,16,0,0,0-5.08,15.71L187.35,216v0l-51.07-31a15.9,15.9,0,0,0-16.54,0l-51,31h0L82.2,157.4a16,16,0,0,0-5.08-15.71L32,102.35a.37.37,0,0,1,0-.09l59.44-5.14a16,16,0,0,0,13.35-9.75L128,32.08l23.2,55.29a16,16,0,0,0,13.35,9.75L224,102.26S224,102.32,224,102.33Z">
+												</path>
+											</svg>
+										</div>
+										<div class="notif__content">
+											<p class="notif__label">New Rating</p>
+											<p class="notif__desc">You have a new rating from David.</p>
+										</div>
+										<p class="notif__time">6h</p>
+									</div>
+								</div>
+
+								<div class="notif__footer">
+									<button class="notif__button" type="button">View All Notifications</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- User menu -->
+					<div class="user">
+						<button class="avatar" id="open-user-menu" aria-label="Open user menu" aria-expanded="false"
+								aria-controls="user-popover"
+								style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAISct1KkXn5Z9wZYM69X_L4Pw4mHHWfIDa76gNyOY31H9JBEifEpQ1OKh3AHggCjjLm6TWU2laUh91pgBtJJCSBIFOf_2sq33vmQ-2FFPkgx31YuE1bzuI2uLgX46nSgZE0IpPV2RbsP1z2MW3FReHHNIw2HJZwlpU8zlSL_uuew9FZTcjragaD9A4n770r76ijSkv6pgNOSPxF8rpnXemql0-ZzeHY1ZR15_o1ePsDJyNjdALt5uaFPpSPBsiYW4pLr_tYKwgIhsl");'></button>
+
+						<div class="menu-popover" id="user-popover" role="menu" aria-modal="false" hidden>
+							<div class="menu__card" role="document">
+								<div class="menu__header">
+									<div class="menu__user">
+										<div class="menu__avatar"
+											 style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAISct1KkXn5Z9wZYM69X_L4Pw4mHHWfIDa76gNyOY31H9JBEifEpQ1OKh3AHggCjjLm6TWU2laUh91pgBtJJCSBIFOf_2sq33vmQ-2FFPkgx31YuE1bzuI2uLgX46nSgZE0IpPV2RbsP1z2MW3FReHHNIw2HJZwlpU8zlSL_uuew9FZTcjragaD9A4n770r76ijSkv6pgNOSPxF8rpnXemql0-ZzeHY1ZR15_o1ePsDJyNjdALt5uaFPpSPBsiYW4pLr_tYKwgIhsl");'>
+										</div>
+										<div class="menu__meta">
+											<p class="menu__name">Sarah</p>
+											<p class="menu__email">sarah@example.com</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="menu__items">
+									<a class="menu__item" href="pro.html" role="menuitem">
+										<span class="menu__icon" aria-hidden="true">
+											<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+												 viewBox="0 0 256 256" fill="currentColor">
+												<path d="M231.9,216.49l-26.49-66.23A80,80,0,1,0,50.59,150.26L24.1,216.49A8,8,0,0,0,31.51,227H224.49a8,8,0,0,0,7.41-10.51ZM128,56a64,64,0,1,1-64,64A64.07,64.07,0,0,1,128,56Zm-88,155,20.26-50.68a80.38,80.38,0,0,0,115.48,0L196,211Z" />
+											</svg>
+										</span>
+										<span class="menu__label">Profile</span>
+									</a>
+									<a class="menu__item" href="setting.html" role="menuitem">
+										<span class="menu__icon" aria-hidden="true">
+											<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+												 viewBox="0 0 256 256" fill="currentColor">
+												<path d="M231.88,105.91l-14-8.09a87.68,87.68,0,0,0-3.69-8.92l5.41-15.63a16,16,0,0,0-19.82-20.6l-16.1,4.3a88.77,88.77,0,0,0-8.58-4.95l-7.89-14.22a16,16,0,0,0-27.72,0L131.6,51.12a88.77,88.77,0,0,0-8.58,4.95l-16.1-4.3a16,16,0,0,0-19.82,20.6l5.41,15.63a87.68,87.68,0,0,0-3.69,8.92l-14,8.09a16,16,0,0,0,0,27.72l14,8.09a87.68,87.68,0,0,0,3.69,8.92l-5.41,15.63a16,16,0,0,0,19.82,20.6l16.1-4.3a88.77,88.77,0,0,0,8.58,4.95l7.89,14.22a16,16,0,0,0,27.72,0l7.89-14.22a88.77,88.77,0,0,0,8.58-4.95l16.1,4.3a16,16,0,0,0,19.82-20.6l-5.41-15.63a87.68,87.68,0,0,0,3.69-8.92l14-8.09a16,16,0,0,0,0-27.72ZM128,160a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z" />
+										</span>
+										<span class="menu__label">Settings</span>
+									</a>
+
+                                <form action="/Account/Logout" method="post" class="menu__item">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="menu__label">Logout</button>
+                                </form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+		</div>
+	</div>
+    <div>
+        @RenderBody()
+    </div>
+
+    <script src="~/User/js/layout.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

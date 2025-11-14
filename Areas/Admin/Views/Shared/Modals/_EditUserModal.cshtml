@@ -1,0 +1,63 @@
+﻿@section Styles {
+	<link rel="stylesheet" href="~/Admin/css/DashboardUser.css" asp-append-version="true" />
+}
+
+<div class="modal" id="editUserModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="editUserTitle">
+	<div class="modal__backdrop" data-close-modal></div>
+	<div class="modal__dialog" role="document">
+		<header class="modal__header">
+			<h3 class="modal__title" id="editUserTitle">Edit User</h3>
+			<button class="iconbtn" aria-label="Close" type="button" data-close-modal>
+				<span class="material-symbols-outlined">close</span>
+			</button>
+		</header>
+		<iframe id="editUserTarget" name="editUserTarget" hidden></iframe>
+		<form class="modal__body" id="editUserForm" method="post" asp-area="Admin" asp-controller="Users" asp-action="EditUser" enctype="multipart/form-data" target="editUserTarget">
+			<input type="hidden" id="editId" name="Id" />
+			<div class="edit-summary">
+				<div class="avatar avatar--md avatar--ring avatar--clickable" id="editAvatar" tabindex="0" role="button" aria-label="Change photo" title="Click to change photo">
+					<span class="material-symbols-outlined avatar__overlay">photo_camera</span>
+				</div>
+				<div>
+					<div id="editNameSummary" class="ro-name"></div>
+					<div id="editEmailSummary" class="ro-meta"></div>
+				</div>
+			</div>
+			<input type="file" id="editAvatarInput" name="AvatarFile" accept="image/*" hidden />
+			<div class="form__row">
+				<label class="form__label" for="editFullName">Full Name</label>
+				<input class="form__input" id="editFullName" name="FullName" type="text" required />
+			</div>
+			<div class="form__row">
+				<label class="form__label" for="editEmail">Email</label>
+				<input class="form__input" id="editEmail" name="Email" type="email" required />
+			</div>
+			<div class="form__grid">
+				<div class="form__row">
+					<label class="form__label" for="editRole">Role</label>
+					<select class="form__input" id="editRole" name="Role">
+						<option value="User">User</option>
+						<option value="Admin">Admin</option>
+						<option value="SuperAdmin">SuperAdmin</option>
+					</select>
+				</div>
+				<div class="form__row">
+					<label class="form__label" for="editStatus">Status</label>
+					<select class="form__input" id="editStatus" name="Status" required>
+						<option value="Active">Active</option>
+						<option value="Inactive">Inactive</option>
+						<option value="Banned">Banned</option>
+					</select>
+				</div>
+			</div>
+			@Html.AntiForgeryToken()
+		</form>
+		<footer class="modal__footer">
+			<button class="um-btn" type="button" data-close-modal>Cancel</button>
+			<button class="um-btn um-btn--primary" type="submit" form="editUserForm">
+				<span class="material-symbols-outlined um-btn__icon">save</span>
+				<span id="editUserSubmitText">Save</span>
+			</button>
+		</footer>
+	</div>
+</div>

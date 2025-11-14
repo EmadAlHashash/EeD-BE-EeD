@@ -1,0 +1,373 @@
+﻿/* Sections */
+.section {
+    padding: 5rem 1.5rem;
+}
+
+/* py-20 px-6 */
+
+.hero {
+    text-align: center;
+}
+
+.hero-title {
+    margin: 0 0 1rem 0;
+    font-weight: 900;
+    /* font-black */
+    color: #111111;
+    /* light */
+    font-size: 3rem;
+    /* text-5xl */
+    line-height: 1.1;
+}
+
+html.dark .hero-title {
+    color: #ffffff;
+}
+
+.hero-subtitle {
+    max-width: 48rem;
+    /* max-w-3xl */
+    margin: 0 auto;
+    font-size: 1.125rem;
+    /* text-lg */
+    color: var(--text-muted-light);
+}
+
+html.dark .hero-subtitle {
+    color: var(--text-muted-dark);
+}
+
+/* Story card */
+.story-card {
+    border: 2px solid rgba(229, 184, 72, 0.5);
+    /* border-primary/50 */
+    border-radius: 0.75rem;
+    /* rounded-xl */
+    background: var(--bg-light);
+    padding: 2rem;
+    /* p-8 */
+    text-align: center;
+}
+
+html.dark .story-card {
+    background: rgba(229, 184, 72, 0.05);
+    /* primary/5 */
+}
+
+.story-card h2 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.875rem;
+    /* text-3xl */
+    font-weight: 700;
+    /* bold */
+    color: #111111;
+}
+
+html.dark .story-card h2 {
+    color: #ffffff;
+}
+
+.story-card p {
+    max-width: 64rem;
+    /* max-w-4xl */
+    margin: 0 auto;
+    font-size: 1.125rem;
+    /* text-lg */
+    line-height: 1.75;
+    /* leading-relaxed */
+    color: #374151;
+    /* gray-700 */
+}
+
+html.dark .story-card p {
+    color: #d1d5db;
+    /* gray-300 */
+}
+
+/* Who We Help */
+.section-title {
+    margin: 0 0 3rem 0;
+    /* mb-12 */
+    text-align: center;
+    font-size: 2.25rem;
+    /* text-4xl */
+    font-weight: 700;
+    color: #111111;
+}
+
+html.dark .section-title {
+    color: #ffffff;
+}
+
+.help-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    /* gap-8 */
+}
+
+.help-card {
+    border: 1px solid rgba(229, 184, 72, 0.2);
+    /* border-primary/20 */
+    border-radius: 0.75rem;
+    /* rounded-xl */
+    background: var(--bg-light);
+    overflow: hidden;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.06);
+    /* shadow-lg */
+    transition: transform 0.3s ease;
+}
+
+    .help-card:hover {
+        transform: translateY(-0.5rem);
+    }
+
+/* hover:-translate-y-2 */
+
+html.dark .help-card {
+    background: rgba(229, 184, 72, 0.1);
+    /* primary/10 */
+}
+
+.help-card .content {
+    padding: 2rem;
+    /* p-8 */
+}
+
+.help-card h3 {
+    margin: 0 0 0.75rem 0;
+    /* mb-3 */
+    font-size: 1.5rem;
+    /* text-2xl */
+    font-weight: 700;
+    /* bold */
+    color: var(--primary);
+}
+
+.help-card p {
+    margin: 0 0 1.5rem 0;
+    /* mb-6 */
+    color: var(--text-muted-light);
+}
+
+html.dark .help-card p {
+    color: #d1d5db;
+    /* gray-300 */
+}
+
+.help-card a {
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+    .help-card a:hover {
+        text-decoration: underline;
+    }
+
+/* Mission & Vision */
+.two-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    /* gap-16 */
+    align-items: center;
+}
+
+.mv-block h2 {
+    margin: 0 0 1rem 0;
+    /* mb-4 */
+    font-size: 1.875rem;
+    /* text-3xl */
+    font-weight: 700;
+    color: #111111;
+}
+
+html.dark .mv-block h2 {
+    color: #ffffff;
+}
+
+.mv-block p {
+    font-size: 1.125rem;
+    /* text-lg */
+    line-height: 1.75;
+    /* leading-relaxed */
+    color: #374151;
+    /* gray-700 */
+    margin: 0;
+}
+
+html.dark .mv-block p {
+    color: #d1d5db;
+    /* gray-300 */
+}
+
+/* FAQ */
+.faq {
+    background: var(--bg-dark);
+}
+
+    .faq .section-title {
+        color: #ffffff;
+    }
+
+.accordion {
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+    /* spacing between accordion items (equivalent to Tailwind space-y-4) */
+    .accordion > .accordion-item + .accordion-item {
+        margin-top: 1rem;
+        /* 16px */
+    }
+
+.accordion-item {
+    background: #000000;
+    border: 1px solid rgba(229, 184, 72, 0.2);
+    border-radius: 0.5rem;
+    /* rounded-lg (0.5rem) */
+    overflow: hidden;
+}
+
+.accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+    padding: 1.5rem;
+    /* p-6 */
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+}
+
+    .accordion-header .title {
+        font-size: 1.25rem;
+        /* text-xl */
+        font-weight: 700;
+        /* bold */
+        color: var(--primary);
+    }
+
+    .accordion-header .icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: var(--primary);
+        transition: transform 0.3s ease-in-out;
+    }
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 1000px;
+}
+
+.accordion-item.active .icon {
+    transform: rotate(180deg);
+}
+
+.accordion-content p {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    /* p-6 pt-0 */
+    margin: 0;
+    color: #ffffff;
+}
+
+/* CTA */
+.cta {
+    text-align: center;
+}
+
+.cta-title {
+    margin: 0 0 1.5rem 0;
+    /* mb-6 */
+    font-size: 2.25rem;
+    /* text-4xl */
+    font-weight: 700;
+    color: #111111;
+}
+
+html.dark .cta-title {
+    color: #ffffff;
+}
+
+.cta-subtitle {
+    max-width: 42rem;
+    /* max-w-2xl */
+    margin: 0 auto 2rem auto;
+    /* mb-8 */
+    font-size: 1.125rem;
+    color: var(--text-muted-light);
+}
+
+html.dark .cta-subtitle {
+    color: var(--text-muted-dark);
+}
+
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.5rem;
+    /* h-14 */
+    padding: 0 2.5rem;
+    /* px-10 */
+    border-radius: var(--radius-full);
+    background: var(--primary);
+    color: var(--bg-dark);
+    font-size: 1.125rem;
+    /* text-lg */
+    font-weight: 700;
+    border: 0;
+    cursor: pointer;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+    transform: translateZ(0);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+    .btn-cta:hover {
+        background: #d9aa3d;
+        transform: scale(1.05);
+    }
+
+
+
+/* Responsive (md: 768px) */
+@media (min-width: 768px) {
+   
+
+    .btn-primary {
+        display: inline-flex;
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+    .hero-title {
+        font-size: 4.5rem;
+    }
+
+    /* md:text-7xl */
+
+    .story-card {
+        padding: 3rem;
+    }
+
+    /* md:p-12 */
+
+    .help-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .two-col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

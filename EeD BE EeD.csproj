@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-EeD_BE_EeD-cf257d17-7d83-4d55-b793-e00cd08ba6f7</UserSecretsId>
+    <RootNamespace>EeD_BE_EeD</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\User\wwwroot\lib\**" />
+    <Compile Remove="Areas\User\wwwroot\uploads\**" />
+    <Content Remove="Areas\User\wwwroot\lib\**" />
+    <Content Remove="Areas\User\wwwroot\uploads\**" />
+    <EmbeddedResource Remove="Areas\User\wwwroot\lib\**" />
+    <EmbeddedResource Remove="Areas\User\wwwroot\uploads\**" />
+    <None Remove="Areas\User\wwwroot\lib\**" />
+    <None Remove="Areas\User\wwwroot\uploads\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.20" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.20" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.20" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.20" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.20" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Services\Interfaces\" />
+    <Folder Include="tests\EeD_BE_EeD.Tests\" />
+    <Folder Include="wwwroot\uploads\profiles\" />
+  </ItemGroup>
+
+</Project>

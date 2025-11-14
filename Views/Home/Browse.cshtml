@@ -1,0 +1,182 @@
+﻿@{
+	ViewData["Title"] = "Browse";
+}
+@section Styles {
+	<link rel="stylesheet" href="~/css/Browse.css" asp-append-version="true" />
+}
+<div class="container max-w-7xl">
+	<div class="search-row">
+		<div class="search-box">
+			<span class="material-symbols-outlined search-icon" aria-hidden="true">search</span>
+			<input type="search" placeholder="Search for services like 'Web Design' or 'Photography'" />
+		</div>
+		<div class="chips" aria-label="Filters">
+			<label class="chip-select">
+				<select name="category">
+					<option selected disabled>Category</option>
+					<option>test</option>
+					<option>test</option>
+					<option>test</option>
+				</select>
+				<span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+			</label>
+
+			<label class="chip-select">
+				<select name="skill">
+					<option selected disabled>Skill</option>
+					<option>test</option>
+					<option>test</option>
+					<option>test</option>
+				</select>
+				<span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+			</label>
+
+			<label class="chip-select">
+				<select name="availability">
+					<option selected disabled>Availability</option>
+					<option>test</option>
+					<option>test</option>
+					<option>test</option>
+				</select>
+				<span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+			</label>
+
+			<label class="chip-select">
+				<select name="location">
+					<option selected disabled>Location</option>
+					<option>test</option>
+					<option>test</option>
+					<option>test</option>
+				</select>
+				<span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+			</label>
+		</div>
+	</div>
+
+	<section class="grid-cards">
+		<!-- Card 1 -->
+		<article class="card">
+			<div class="card-media">
+				<div class="card-image" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBnPEJcS8jUUu065aTsubyqm1lzJZzHA_1xcJUPs9R6xwjc-o36SujSVgKsAYgyTIpOXzPZQEq5c1xTr7HJl8svTP5cKQSD1FG4njP09z_jcyMR2EnOUtnl4qKHLYgAiCCTCVOtMTqRiwhrFF9UlITB-vhD0h813rrhu7z5XjgFhlmN805Uqffz9JFLQ6npAV6QMvqQMScoTPkb4Up-hIlHB6e7hLfEeIFEfPlGxECAqMIJE2bNdy5gWsUdANYNfKAvIrrMlhZifan8');"></div>
+				<div class="card-avatar" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjdCx2isOmXD4ibkJ1164rT7S6V3_Moh9ZyV8hOz8RomFN8vh8w27YAMFm9yGtXyWUS9DkEfrE3caMPuIKr_gLau4zgkBGCPJy4qSTApQpGMvQGuBU_kOr4altyHPKmytQKlOF-3gHRjsy68lTX3hyIgCUNtcZp39CqV3ohqa66DDdPcvQQDeInfVBi9WETEYXioCpMJmWzplvWDsRLfGpWI4dEXZtQK3CowDGNRs9DxUNE5VhRMGlmgOgIVEmttrWTBNAS6HpxQCA');"></div>
+			</div>
+			<div class="card-body">
+				<h3>Photography Lessons</h3>
+				<p class="muted">Learn photography from a professional.</p>
+				<div class="exchange">In exchange for: <span style="font-weight:700">Web Development</span></div>
+				<button class="btn-view">View Details</button>
+			</div>
+		</article>
+
+		<!-- Card 2 -->
+		<article class="card">
+			<div class="card-media">
+				<div class="card-image" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7QfPQe_rrghPuUDOzh2M91AeWL2A55vAir2rzojjgdO6oxVeIEFRyTFwJPHtbYHVpMR8fxoEp3QHQr2d_3jg6YOFHN3HSiKbkgQFjOfpOqOFaAv4Vve7pqMDyPjhnX_WbFOEjIusgUR4v0cVznQNsD9oeUya7Va41mntLBGux-9AVolIrAZypiEB4gqtOO8UHIjUwhtKYCNRWkkVplilqdo-bU3YUOdACT1FwscsYJ5fF-408mw7LO_IhfqWdf-z2g9ZCnNwsckFs');"></div>
+				<div class="card-avatar" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjdCx2isOmXD4ibkJ1164rT7S6V3_Moh9ZyV8hOz8RomFN8vh8w27YAMFm9yGtXyWUS9DkEfrE3caMPuIKr_gLau4zgkBGCPJy4qSTApQpGMvQGuBU_kOr4altyHPKmytQKlOF-3gHRjsy68lTX3hyIgCUNtcZp39CqV3ohqa66DDdPcvQQDeInfVBi9WETEYXioCpMJmWzplvWDsRLfGpWI4dEXZtQK3CowDGNRs9DxUNE5VhRMGlmgOgIVEmttrWTBNAS6HpxQCA');"></div>
+			</div>
+			<div class="card-body">
+				<h3>Web Design Assistance</h3>
+				<p class="muted">Get help with your web design projects.</p>
+				<div class="exchange">In exchange for: <span style="font-weight:700">Graphic Design</span></div>
+				<button class="btn-view">View Details</button>
+			</div>
+		</article>
+
+		<!-- Card 3 -->
+		<article class="card">
+			<div class="card-media">
+				<div class="card-image" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuA4ublueo7LbNrb9Rv_iSXsfT6DYt4GdkTg8Zz-23njwcCUtSrz4j3WHP0OuXindbASFZ4usI_mSMmqh5kywZ3PFqCchz4cJRRBlgOVfpYQUuRG-c3iiJa3vGYclunk8gH3IXChRaqUbrp4o6KfPYf-rV7yp31CylUsO3rn_LYsp0pdUXX7ywCr76kyBpNFvhSTRub7pzPdixPX9knRGioHlS4NZup3fXEssop23BqyuMSG8EN_flXRJ8ti3lc1HAfT-qvz_90ffz-V');"></div>
+				<div class="card-avatar" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjdCx2isOmXD4ibkJ1164rT7S6V3_Moh9ZyV8hOz8RomFN8vh8w27YAMFm9yGtXyWUS9DkEfrE3caMPuIKr_gLau4zgkBGCPJy4qSTApQpGMvQGuBU_kOr4altyHPKmytQKlOF-3gHRjsy68lTX3hyIgCUNtcZp39CqV3ohqa66DDdPcvQQDeInfVBi9WETEYXioCpMJmWzplvWDsRLfGpWI4dEXZtQK3CowDGNRs9DxUNE5VhRMGlmgOgIVEmttrWTBNAS6HpxQCA');"></div>
+			</div>
+			<div class="card-body">
+				<h3>Yoga Classes</h3>
+				<p class="muted">Relax and improve your flexibility with yoga.</p>
+				<div class="exchange">In exchange for: <span style="font-weight:700">Cooking Lessons</span></div>
+				<button class="btn-view">View Details</button>
+			</div>
+		</article>
+
+		<!-- Card 4 -->
+		<article class="card">
+			<div class="card-media">
+				<div class="card-image" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJPa-hC3-uIZhwTPuKqFjNR8o4cmcKJAiljKHRqq5obvMEIlOtlQ588XtoqbiPTOuugfh8LlR0AWxoYBgIrml4cSR4B7W3GEzJhKWV09yZBhSrynBkQOLkvc8i4XCSsFaBk9hfJYs-eAdcg1-vxLpa3Yhn2hSB5EiYUgLznFs0F4KdZcJY96PRhsH3LIPntIpoXpz9l3sevIj4NS_dCdEesSHg7rNtLTdNRyhVa6dwtbIMp4ha2K-bF3W0CCYaINOwG8yLsDy6U6cD');"></div>
+				<div class="card-avatar" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjdCx2isOmXD4ibkJ1164rT7S6V3_Moh9ZyV8hOz8RomFN8vh8w27YAMFm9yGtXyWUS9DkEfrE3caMPuIKr_gLau4zgkBGCPJy4qSTApQpGMvQGuBU_kOr4altyHPKmytQKlOF-3gHRjsy68lTX3hyIgCUNtcZp39CqV3ohqa66DDdPcvQQDeInfVBi9WETEYXioCpMJmWzplvWDsRLfGpWI4dEXZtQK3CowDGNRs9DxUNE5VhRMGlmgOgIVEmttrWTBNAS6HpxQCA');"></div>
+			</div>
+			<div class="card-body">
+				<h3>Language Tutoring</h3>
+				<p class="muted">Practice a new language with a native speaker.</p>
+				<div class="exchange">In exchange for: <span style="font-weight:700">Music Lessons</span></div>
+				<button class="btn-view">View Details</button>
+			</div>
+		</article>
+
+		<!-- Card 5 -->
+		<article class="card">
+			<div class="card-media">
+				<div class="card-image" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVo_mwF-bAE-Rb475rOVy85Ixx2iksdTJixfkHkotr9fVxtJKx9tRqecKbIe96f5SyyMGvhF4dO6altF5-NQSLzR2WYr_pWWVKR4FwOXBGxrcl5cdeDtXu7XCgrsTethFqpcXPtMtPjmWt4StAR2YRtJW88FOA5D4xGJ7WjvEyMXXO8q9am1Qhr2VqAm0Y5wrQwE8aTC_2z-LyP7rVtmphuExHhlRgQIFCbbOYK3t20sHTKSbQ3pUgcIxAw0aHo0PqEC_JBbea-wCb');"></div>
+				<div class="card-avatar" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjdCx2isOmXD4ibkJ1164rT7S6V3_Moh9ZyV8hOz8RomFN8vh8w27YAMFm9yGtXyWUS9DkEfrE3caMPuIKr_gLau4zgkBGCPJy4qSTApQpGMvQGuBU_kOr4altyHPKmytQKlOF-3gHRjsy68lTX3hyIgCUNtcZp39CqV3ohqa66DDdPcvQQDeInfVBi9WETEYXioCpMJmWzplvWDsRLfGpWI4dEXZtQK3CowDGNRs9DxUNE5VhRMGlmgOgIVEmttrWTBNAS6HpxQCA');"></div>
+			</div>
+			<div class="card-body">
+				<h3>Graphic Design Services</h3>
+				<p class="muted">Create stunning visuals for your brand.</p>
+				<div class="exchange">In exchange for: <span style="font-weight:700">Marketing Help</span></div>
+				<button class="btn-view">View Details</button>
+			</div>
+		</article>
+
+		<!-- Card 6 -->
+		<article class="card">
+			<div class="card-media">
+				<div class="card-image" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0b5EIr7XIm-AqMGQpQcT8zc_Gy__bU5JgVsU_2Trbii0wyVo4HIsrH9h4D9lbvmmenuSnN5UE6bBNZrCACneDcUnIWgocAxBWmav_zuKCH2W3ZJXK__P826wUXH9v7qHFoAMvuDl9QW72KzCI_VnlAo9tZLnYZ5ffIQBUnDLSLGuytY3WbUuD2gEd-zPXsbUAAclxsv2AEZUQwmh32nzJYTEbcCgEuobnyrypZkYepv7N_2cYk85IfxqVC4MjB5_zqp4Z17vUMep2');"></div>
+				<div class="card-avatar" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjdCx2isOmXD4ibkJ1164rT7S6V3_Moh9ZyV8hOz8RomFN8vh8w27YAMFm9yGtXyWUS9DkEfrE3caMPuIKr_gLau4zgkBGCPJy4qSTApQpGMvQGuBU_kOr4altyHPKmytQKlOF-3gHRjsy68lTX3hyIgCUNtcZp39CqV3ohqa66DDdPcvQQDeInfVBi9WETEYXioCpMJmWzplvWDsRLfGpWI4dEXZtQK3CowDGNRs9DxUNE5VhRMGlmgOgIVEmttrWTBNAS6HpxQCA');"></div>
+			</div>
+			<div class="card-body">
+				<h3>Personal Training</h3>
+				<p class="muted">Achieve your fitness goals with a certified trainer.</p>
+				<div class="exchange">In exchange for: <span style="font-weight:700">Nutrition Plan</span></div>
+				<button class="btn-view">View Details</button>
+			</div>
+		</article>
+
+		<!-- Card 7 -->
+		<article class="card">
+			<div class="card-media">
+				<div class="card-image" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuB8ENd6VZm29_SGAjkOf2p2t9EbAlifYX62Ww07uHtZ2-yShi7Zz4XweySMOmOYm7RGShWKS8MCCOIbtovskluhyQyVe8l5ZH5plHtou97_9-QaYBfXOr3lTSawG47-taIqEXra3i_cC9yu15Dfy0Ah2TnCZb1G307ZD_vKvkzewyn5HzOXbVzJbnx7hgO-wFhQchlZDNPvl4JzgRyLoCiPnrN_D2RVAAsbsLJoph1fHx8zszhX1NRONzFWHbW9FzVyUho3fRX-2aX0');"></div>
+				<div class="card-avatar" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjdCx2isOmXD4ibkJ1164rT7S6V3_Moh9ZyV8hOz8RomFN8vh8w27YAMFm9yGtXyWUS9DkEfrE3caMPuIKr_gLau4zgkBGCPJy4qSTApQpGMvQGuBU_kOr4altyHPKmytQKlOF-3gHRjsy68lTX3hyIgCUNtcZp39CqV3ohqa66DDdPcvQQDeInfVBi9WETEYXioCpMJmWzplvWDsRLfGpWI4dEXZtQK3CowDGNRs9DxUNE5VhRMGlmgOgIVEmttrWTBNAS6HpxQCA');"></div>
+			</div>
+			<div class="card-body">
+				<h3>Music Lessons</h3>
+				<p class="muted">Master an instrument or improve your singing.</p>
+				<div class="exchange">In exchange for: <span style="font-weight:700">Language Tutoring</span></div>
+				<button class="btn-view">View Details</button>
+			</div>
+		</article>
+
+		<!-- Card 8 -->
+		<article class="card">
+			<div class="card-media">
+				<div class="card-image" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDN0GcYYprAOC3AGealr-AQ6TsyIF-Cs3IcMTK5YfMZZgHP8uuTcmUxSz5Dn78-RVmIWPIJHBciaBfxRh6vNAAmQNaPUwnzVS_XMi46jyoOUzMuYIkPRqeuIFLv-ZfLMs5eFWjKHesaRGn0M5nY5BvBaneIDGojKe1ySMpcUMvdekcmp0iT-0y93ScUbJe--NxYMQvDTPwzzK1PLLcsaoeoHnps3AIFlRV5xfo9bllZAdCwepZIFZaj-wEVoK3QBopIixr_ujF0HFpE');"></div>
+				<div class="card-avatar" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjdCx2isOmXD4ibkJ1164rT7S6V3_Moh9ZyV8hOz8RomFN8vh8w27YAMFm9yGtXyWUS9DkEfrE3caMPuIKr_gLau4zgkBGCPJy4qSTApQpGMvQGuBU_kOr4altyHPKmytQKlOF-3gHRjsy68lTX3hyIgCUNtcZp39CqV3ohqa66DDdPcvQQDeInfVBi9WETEYXioCpMJmWzplvWDsRLfGpWI4dEXZtQK3CowDGNRs9DxUNE5VhRMGlmgOgIVEmttrWTBNAS6HpxQCA');"></div>
+			</div>
+			<div class="card-body">
+				<h3>Event Planning</h3>
+				<p class="muted">Plan your next event with an experienced organizer.</p>
+				<div class="exchange">In exchange for: <span style="font-weight:700">Event Photography</span></div>
+				<button class="btn-view">View Details</button>
+			</div>
+		</article>
+	</section>
+</div>
+
+
+<section class="cta-wrap">
+	<div class="container max-w-4xl">
+		<div class="cta">
+			<h2>Join SkillSwap today and start exchanging skills!</h2>
+			<p>Unlock a world of possibilities without spending a dime. Sign up for free and connect with a community of talented individuals.</p>
+			<a asp-area="Identity" asp-page="/Account/Register">
+				<button class="btn-cta">Create a free account</button>
+			</a>
+		</div>
+	</div>
+</section>

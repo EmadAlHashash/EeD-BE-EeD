@@ -1,0 +1,37 @@
+﻿@section Styles {
+	<link rel="stylesheet" href="~/Admin/css/DashboardUser.css" asp-append-version="true" />
+}
+
+<div class="modal" id="viewUserModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="viewUserTitle">
+	<div class="modal__backdrop" data-close-modal></div>
+	<div class="modal__dialog" role="document">
+		<header class="modal__header">
+			<h3 class="modal__title" id="viewUserTitle">User Details</h3>
+			<button class="iconbtn" aria-label="Close" type="button" data-close-modal>
+				<span class="material-symbols-outlined">close</span>
+			</button>
+		</header>
+		<div class="modal__body">
+			<div class="view-summary">
+				<div class="avatar avatar--xl avatar--ring" id="viewAvatar"></div>
+				<div>
+					<div id="viewName" class="ro-name"></div>
+					<div id="viewEmail" class="ro-meta"></div>
+				</div>
+			</div>
+			<div class="form__grid">
+				<div class="form__row">
+					<div class="form__label">Role</div>
+					<div id="viewRole" class="ro-value"></div>
+				</div>
+				<div class="form__row">
+					<div class="form__label">Status</div>
+					<div id="viewStatus" class="ro-value"></div>
+				</div>
+			</div>
+		</div>
+		<footer class="modal__footer">
+			<button class="um-btn" type="button" data-close-modal>Close</button>
+		</footer>
+	</div>
+</div>

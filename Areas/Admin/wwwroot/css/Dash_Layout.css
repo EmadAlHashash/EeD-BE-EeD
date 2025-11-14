@@ -1,0 +1,154 @@
+﻿/* Eed By Eed Admin Dashboard (Pure CSS) */
+/* Design constants */
+:root {
+    --primary: #f9b406;
+    --primary-10: rgba(249, 180, 6, 0.1);
+    --primary-20: rgba(249, 180, 6, 0.2);
+    --bg-light: #f8f7f5;
+    --bg-dark: #231d0f;
+    --text-dark: #000000;
+    --text-light: #ffffff;
+    --muted-light: rgba(255, 255, 255, 0.7);
+    --muted-lighter: rgba(255, 255, 255, 0.6);
+    --radius-lg: 8px;
+    /* Tailwind rounded-lg */
+    --space-2: 8px;
+    /* Tailwind 2 */
+    --space-3: 12px;
+    /* Tailwind 3 */
+    --space-4: 16px;
+    /* Tailwind 4 */
+    --space-6: 24px;
+    /* Tailwind 6 */
+    --space-8: 32px;
+    /* Tailwind 8 */
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    /* Shared chart block height for parity between cards */
+    --chart-block-height: 192px;
+}
+
+/* Base */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.theme-dark {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+}
+
+/* Layout */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 256px;
+    /* w-64 */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-dark);
+    border-right: 1px solid rgba(249, 180, 6, 0.1);
+    /* Keep sidebar fixed while page scrolls */
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+    /* prevent shrinking in flex layout */
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: var(--space-6);
+}
+
+.avatar {
+    width: 40px;
+    /* size-10 */
+    height: 40px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+
+.brand-title {
+    margin: 0;
+    font-size: 1.125rem;
+    /* text-lg */
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.nav {
+    padding: 8px 16px;
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border-radius: var(--radius-lg);
+    color: var(--text-light);
+    text-decoration: none;
+    transition: background-color .15s ease, color .15s ease;
+}
+
+    .nav-link:hover {
+        background-color: var(--primary-10);
+    }
+
+    .nav-link.is-active {
+        background-color: var(--primary);
+        color: #111111;
+        /* text-black */
+    }
+.nav-list .nav-link .menu__item {
+    /* flatten the form so its contents align with the SVG and use the same gap */
+    display: contents; /* behaves like no wrapper; keeps gap with SVG */
+}
+
+.nav-list .nav-link .menu__label {
+    color: inherit; /* same color as the link text */
+    font: inherit; /* same font as the rest of the menu */
+    line-height: 1; /* match span */
+    background: transparent; /* remove default button styles */
+    border: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+    .nav-list .nav-link .menu__label:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+.help {
+    margin-top: auto;
+    padding: 8px 16px 12px;
+}

@@ -1,0 +1,141 @@
+﻿@{
+	ViewData["Title"] = "About";
+}
+@section Styles {
+	<link rel="stylesheet" href="~/css/About.css" asp-append-version="true" />
+}
+
+<!-- Hero -->
+<section class="section hero">
+	<h1 class="hero-title">About <span class="text-primary">Eed By Eed</span></h1>
+	<p class="hero-subtitle">
+		Discover the story, mission, and vision behind our community-driven platform for skill exchange.
+	</p>
+</section>
+
+<!-- Story -->
+<section class="section">
+	<div class="container">
+		<div class="story-card">
+			<h2>Our Story</h2>
+			<p>
+				Eed By Eed was born from a simple idea: to create a space where skills and services could be exchanged freely, without the barrier of monetary transactions. We envisioned a community where individuals could connect, collaborate, and grow, leveraging their unique abilities to help one another. Our platform is built on the principles of mutual support, skill-sharing, and community empowerment, fostering a culture of collaboration and growth.
+			</p>
+		</div>
+	</div>
+</section>
+
+<!-- Who We Help -->
+<section class="section">
+	<div class="container">
+		<h2 class="section-title">Who We Help</h2>
+
+		<div class="help-grid">
+			<article class="help-card">
+				<div class="content">
+					<h3>Students</h3>
+					<p>Gain practical experience, build your portfolio, and connect with peers and mentors. Exchange your skills for tutoring, project assistance, or career advice.</p>
+					<a href="#">Learn More →</a>
+				</div>
+			</article>
+
+			<article class="help-card">
+				<div class="content">
+					<h3>Freelancers</h3>
+					<p>Expand your network, find new opportunities, and diversify your skill set by exchanging services with other professionals. Offer your expertise for services you need.</p>
+					<a href="#">Learn More →</a>
+				</div>
+			</article>
+
+			<article class="help-card">
+				<div class="content">
+					<h3>Startups</h3>
+					<p>Access a wide range of skills and services without straining your budget. Collaborate with talented individuals and exchange your offerings for the support you need to grow.</p>
+					<a href="#">Learn More →</a>
+				</div>
+			</article>
+		</div>
+	</div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="section">
+	<div class="container two-col">
+		<div class="mv-block">
+			<h2>Our Mission</h2>
+			<p>
+				To empower individuals and communities by facilitating the free exchange of skills and services, fostering a culture of collaboration, mutual support, and continuous growth.
+			</p>
+		</div>
+		<div class="mv-block">
+			<h2>Our Vision</h2>
+			<p>
+				To become the leading platform for skill-sharing and service exchange, creating a global network of individuals and organizations committed to helping one another thrive.
+			</p>
+		</div>
+	</div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq">
+	<div class="container">
+		<h2 class="section-title">Frequently Asked Questions</h2>
+		<div class="accordion" id="faq-accordion">
+			<div class="accordion-item">
+				<button class="accordion-header" type="button">
+					<span class="title">What is Eed By Eed?</span>
+					<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" /></svg>
+				</button>
+				<div class="accordion-content">
+					<p>Eed By Eed is a digital platform where users can exchange skills and services without any financial cost. It's a community built on mutual support, helping individuals and startups to grow by bartering their abilities.</p>
+				</div>
+			</div>
+
+			<div class="accordion-item">
+				<button class="accordion-header" type="button">
+					<span class="title">How does the skill exchange work?</span>
+					<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" /></svg>
+				</button>
+				<div class="accordion-content">
+					<p>You list the skills you can offer and the services you need. The platform helps you find other users with complementary needs. You can then connect, agree on the terms of the exchange, and collaborate. No money is involved; the currency is your talent.</p>
+				</div>
+			</div>
+
+			<div class="accordion-item">
+				<button class="accordion-header" type="button">
+					<span class="title">Is the platform free to use?</span>
+					<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" /></svg>
+				</button>
+				<div class="accordion-content">
+					<p>Yes, the core functionality of Eed By Eed is completely free. Our mission is to make skills accessible to everyone, regardless of their financial situation. We may introduce premium features in the future, but the ability to exchange skills will always be free.</p>
+				</div>
+			</div>
+
+			<div class="accordion-item">
+				<button class="accordion-header" type="button">
+					<span class="title">Who can join Eed By Eed?</span>
+					<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" /></svg>
+				</button>
+				<div class="accordion-content">
+					<p>Our platform is open to everyone! Whether you are a student looking for experience, a freelancer wanting to expand your network, a startup needing services on a budget, or simply someone who wants to learn and share, you are welcome in our community.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- CTA -->
+<section class="section cta">
+	<div class="container">
+		<h2 class="cta-title">Ready to Join?</h2>
+		<p class="cta-subtitle">Become a part of a vibrant community where skills are the currency and collaboration is key.</p>
+		<a asp-area="Identity" asp-page="/Account/Register">
+			<button class="btn-cta" type="button">Join Our Community Today</button>
+		</a>
+	</div>
+</section>
+
+@section Scripts {
+	<script src="~/js/About.js" asp-append-version="true"></script>
+
+}

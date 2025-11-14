@@ -1,0 +1,80 @@
+﻿@section Styles {
+	<link rel="stylesheet" href="~/Admin/css/DashboardUser.css" asp-append-version="true" />
+}
+
+<div class="modal" id="addUserModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="addUserModalTitle">
+	<div class="modal__backdrop" data-close-modal></div>
+	<div class="modal__dialog" role="document">
+		<header class="modal__header">
+			<h3 class="modal__title" id="addUserModalTitle">Add User</h3>
+			<button class="iconbtn" aria-label="Close" type="button" data-close-modal>
+				<span class="material-symbols-outlined">close</span>
+			</button>
+		</header>
+		<iframe id="addUserTarget" name="addUserTarget" hidden></iframe>
+		<form class="modal__body" id="addUserForm" method="post" asp-area="Admin" asp-controller="Users" asp-action="AddAdmin" enctype="multipart/form-data" target="addUserTarget">
+			<!-- Avatar upload (clickable circle + hidden input) -->
+			<div class="edit-summary">
+				<div class="avatar avatar--xl avatar--ring avatar--clickable avatar--placeholder"
+					 id="addAvatar"
+					 tabindex="0"
+					 role="button"
+					 aria-label="Add photo"
+					 title="Click to add photo">
+					<span class="material-symbols-outlined avatar__overlay">photo_camera</span>
+				</div>
+				<div>
+					<div class="ro-name">Profile Photo</div>
+					<div class="ro-meta">Click the circle to upload</div>
+				</div>
+			</div>
+			<input type="file" id="addAvatarInput" name="AvatarFile" accept="image/*" hidden />
+
+			<div class="form__row">
+				<label class="form__label" for="fullName">Full Name</label>
+				<input class="form__input" id="fullName" name="FullName" type="text" placeholder="Enter full name" required />
+			</div>
+			<div class="form__row">
+				<label class="form__label" for="email">Email</label>
+				<input class="form__input" id="email" name="Email" type="email" placeholder="name@example.com" required />
+			</div>
+			<div class="form__grid">
+				<div class="form__row">
+					<label class="form__label" for="password">Password</label>
+					<input class="form__input" id="password" name="Password" type="password" placeholder="Enter password" minlength="6" required />
+				</div>
+				<div class="form__row">
+					<label class="form__label" for="confirmPassword">Confirm Password</label>
+					<input class="form__input" id="confirmPassword" name="ConfirmPassword" type="password" placeholder="Re-enter password" minlength="6" required />
+				</div>
+			</div>
+			<div id="pwError" class="form__error" hidden>Passwords do not match.</div>
+
+			<div class="form__grid">
+				<div class="form__row">
+					<label class="form__label" for="role">Role</label>
+					<select class="form__input" id="role" name="Role" required>
+						<option value="Admin">Admin</option>
+						<option value="SuperAdmin">SuperAdmin</option>
+					</select>
+				</div>
+				<div class="form__row">
+					<label class="form__label" for="status">Status</label>
+					<select class="form__input" id="status" name="Status" required>
+						<option value="Active">Active</option>
+						<option value="Inactive">Inactive</option>
+						<option value="Banned">Banned</option>
+					</select>
+				</div>
+			</div>
+			@Html.AntiForgeryToken()
+		</form>
+		<footer class="modal__footer">
+			<button class="um-btn" type="button" data-close-modal>Cancel</button>
+			<button class="um-btn um-btn--primary" type="submit" form="addUserForm">
+				<span class="material-symbols-outlined um-btn__icon">add</span>
+				<span id="addUserSubmitText">Add User</span>
+			</button>
+		</footer>
+	</div>
+</div>
