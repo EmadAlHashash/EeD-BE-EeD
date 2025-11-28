@@ -30,7 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Services\Interfaces\" />
     <Folder Include="tests\EeD_BE_EeD.Tests\" />
     <Folder Include="wwwroot\uploads\profiles\" />

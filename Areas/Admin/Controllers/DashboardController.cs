@@ -25,7 +25,7 @@ namespace EeD_BE_EeD.Areas.Admin.Controllers
 
             var activeServices = await _db.Set<Service>()
                 .AsNoTracking()
-                .CountAsync(s => s.IsActive);
+                .CountAsync(s => s.Status == ServiceStatus.Active);
 
             var pendingExchanges = await _db.Set<Exchange>()
                 .AsNoTracking()
@@ -58,7 +58,7 @@ namespace EeD_BE_EeD.Areas.Admin.Controllers
             // ---- 🟨 الشارت: عدد الخدمات الفعالة لكل تصنيف ----
             var servicesPerCategory = await _db.Set<Service>()
                 .AsNoTracking()
-                .Where(s => s.IsActive)
+                .Where(s => s.Status == ServiceStatus.Active)
                 .GroupBy(s => s.Category.Name)
                 .Select(g => new CategoryCount
                 {

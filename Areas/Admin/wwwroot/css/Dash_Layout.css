@@ -1,7 +1,8 @@
-﻿/* Eed By Eed Admin Dashboard (Pure CSS) */
+﻿        /* Eed By Eed Admin Dashboard (Pure CSS) */
 /* Design constants */
 :root {
     --primary: #f9b406;
+    --primary-5: rgba(249, 180, 6, 0.05);
     --primary-10: rgba(249, 180, 6, 0.1);
     --primary-20: rgba(249, 180, 6, 0.2);
     --bg-light: #f8f7f5;
@@ -10,6 +11,7 @@
     --text-light: #ffffff;
     --muted-light: rgba(255, 255, 255, 0.7);
     --muted-lighter: rgba(255, 255, 255, 0.6);
+    --muted-dark: #d1d5db;
     --radius-lg: 8px;
     /* Tailwind rounded-lg */
     --space-2: 8px;

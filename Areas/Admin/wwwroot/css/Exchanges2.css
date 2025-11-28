@@ -1,0 +1,265 @@
+﻿/* ---------- CSS VARIABLES (FINAL VERSION) ---------- */
+:root {
+    /* Theme Colors */
+    --bg-light: #1b150b;
+    --text-light: #ffffff;
+    --text-dark: #ffffff;
+    --muted-light: rgba(255, 255, 255, 0.75);
+    --muted-lighter: rgba(255, 255, 255, 0.6);
+    --muted-dark: #d1d5db;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --header-bg: #3a310f;
+    --hover-bg: #2c2410;
+    /* ---------- BADGES COLORS (EXACT DESIGN MATCH) ---------- */
+    --pending-bg: #a06c18;
+    --pending-text: #ffdd94;
+    --completed-bg: #14532d;
+    --completed-text: #8ef5b5;
+    --radius: 6px;
+    --radius-lg: 10px;
+    --radius-xl: 14px;
+}
+
+
+/* ---------- BASE LAYOUT ---------- */
+.app-body {
+    background: var(--bg-light);
+    color: var(--text-light);
+}
+
+html.dark .app-body {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main {
+    flex: 1;
+}
+
+.page {
+    padding: 32px;
+}
+
+.page-title {
+    margin-bottom: 32px;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+
+/* ---------- CARDS ---------- */
+.card {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+
+/* ---------- TABLE STYLE (FINAL) ---------- */
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    color: var(--muted-light);
+}
+
+    /* Header */
+    .table thead th {
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.02em;
+        color: #fff;
+        background: var(--header-bg);
+        padding: 14px 24px;
+        white-space: nowrap;
+    }
+
+    /* Body rows */
+    .table tbody td {
+        padding: 16px 24px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    /* Hover */
+    .table tbody tr:hover {
+        background: var(--hover-bg);
+        transition: background 0.15s ease;
+    }
+
+/* Strong text */
+.cell-strong {
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+/* Right align */
+.table td.cell-right,
+.table th.cell-right,
+.table tbody td:last-child {
+    text-align: right;
+}
+
+
+/* ---------- BADGES (FINAL DESIGN) ---------- */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+/* Pending */
+.badge--pending {
+    background: var(--pending-bg) !important;
+    color: var(--pending-text) !important;
+}
+
+/* Completed */
+.badge--completed {
+    background: var(--completed-bg) !important;
+    color: var(--completed-text) !important;
+}
+
+
+/* ---------- Accessibility ---------- */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    white-space: nowrap;
+}
+
+
+/* ---------- Modal ---------- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .15s ease;
+}
+
+    .modal-overlay.is-open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+.modal {
+    width: min(640px, 92vw);
+    background: var(--bg-light);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04);
+    transform: translateY(10px) scale(.98);
+    transition: transform .2s ease;
+}
+
+.modal-overlay.is-open .modal {
+    transform: none;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.modal-close {
+    background: transparent;
+    border: 0;
+    font-size: 24px;
+    cursor: pointer;
+    color: inherit;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+    .modal-close:hover {
+        background: var(--hover-bg);
+    }
+
+.modal-body {
+    padding: 20px;
+    display: grid;
+    row-gap: 12px;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+    .detail .label {
+        color: var(--muted-light);
+        font-weight: 600;
+    }
+
+    .detail .value {
+        color: inherit;
+        font-weight: 500;
+    }
+
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 220px;
+    }
+
+    .page {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .app {
+        flex-direction: column;
+    }
+
+    .page {
+        padding: 20px;
+    }
+
+    .page-title {
+        margin-bottom: 20px;
+    }
+}

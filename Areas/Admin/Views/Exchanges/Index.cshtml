@@ -1,0 +1,138 @@
+﻿@model EeD_BE_EeD.Areas.Admin.ViewModels.ExchangeManagementViewModel
+
+@{
+    ViewData["Title"] = "Exchangesss Dashboard";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/Admin/css/Exchanges2.css" asp-append-version="true" />
+}
+
+<div class="app">
+    <main class="main">
+        <div class="page">
+            <h2 class="page-title">Exchanges</h2>
+
+            <!-- Summary Cards -->
+            <div class="stats">
+                <div class="stat-card">Total: @Model.TotalExchanges</div>
+                <div class="stat-card">Pending: @Model.PendingCount</div>
+                <div class="stat-card">Completed: @Model.CompletedCount</div>
+                <div class="stat-card">Cancelled: @Model.CancelledCount</div>
+            </div>
+
+            <!-- TABLE -->
+            <div class="card">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead class="table-head">
+                            <tr>
+                                <th>Exchange ID</th>
+                                <th>Requested</th>
+                                <th>Offered</th>
+                                <th>Requester</th>
+                                <th>Provider</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model.Exchanges.Any())
+                            {
+                                foreach (var e in Model.Exchanges)
+                                {
+                                    <tr class="table-row">
+                                        <td class="cell-strong">#@e.Id</td>
+                                        <td>@e.RequestedServiceTitle</td>
+                                        <td>@e.OfferedServiceTitle</td>
+                                        <td>@e.RequesterName</td>
+                                        <td>@e.ProviderName</td>
+                                        <td>
+                                            <span class="badge badge--@e.Status.ToLower()">
+                                                @e.Status
+                                            </span>
+                                        </td>
+                                        <td>@e.RequestDateFormatted</td>
+                                        <td class="cell-right">
+                                            <button class="link-primary"
+                                                    data-action="view"
+                                                    data-id="@e.Id"
+                                                    data-requested="@e.RequestedServiceTitle"
+                                                    data-offered="@e.OfferedServiceTitle"
+                                                    data-requester="@e.RequesterName"
+                                                    data-provider="@e.ProviderName"
+                                                    data-status="@e.Status"
+                                                    data-date="@e.RequestDateFormatted"
+                                                    data-completion="@e.CompletionDateFormatted">
+                                                View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="8" class="text-center p-4">
+                                        No Exchanges Found.
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PAGINATION -->
+            <div class="pagination">
+                @{
+                    var totalPages = (int)Math.Ceiling((double)ViewBag.TotalCount / ViewBag.PageSize);
+                    int currentPage = ViewBag.Page;
+                }
+
+                @if (totalPages > 1)
+                {
+                    <div class="pager">
+                        @if (currentPage > 1)
+                        {
+                            <a class="pager-btn" href="?page=@(currentPage - 1)">Prev</a>
+                        }
+
+                        <span class="pager-info">Page @currentPage of @totalPages</span>
+
+                        @if (currentPage < totalPages)
+                        {
+                            <a class="pager-btn" href="?page=@(currentPage + 1)">Next</a>
+                        }
+                    </div>
+                }
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" data-modal-overlay hidden>
+    <div class="modal" role="dialog" aria-modal="true">
+        <div class="modal-header">
+            <h3 class="modal-title">Exchange Details</h3>
+            <button type="button" class="modal-close">&times;</button>
+        </div>
+
+        <div class="modal-body">
+            <div class="detail"><span class="label">Exchange ID</span><span class="value" id="md-id"></span></div>
+            <div class="detail"><span class="label">Requested Service</span><span class="value" id="md-requested"></span></div>
+            <div class="detail"><span class="label">Offered Service</span><span class="value" id="md-offered"></span></div>
+            <div class="detail"><span class="label">Requester</span><span class="value" id="md-requester"></span></div>
+            <div class="detail"><span class="label">Provider</span><span class="value" id="md-provider"></span></div>
+            <div class="detail"><span class="label">Status</span><span class="value"><span id="md-status" class="badge"></span></span></div>
+            <div class="detail"><span class="label">Requested Date</span><span class="value" id="md-date"></span></div>
+            <div class="detail"><span class="label">Completed Date</span><span class="value" id="md-completion"></span></div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Admin/js/Exchanges2.js" asp-append-version="true"></script>

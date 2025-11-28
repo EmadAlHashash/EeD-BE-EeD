@@ -8,6 +8,7 @@ namespace EeD_BE_EeD.Models
         Pending,
         Approved,
         Completed,
+        InProgress,
         Cancelled
     }
     public class Exchange

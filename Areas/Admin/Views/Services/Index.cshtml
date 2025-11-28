@@ -1,0 +1,339 @@
+﻿@model EeD_BE_EeD.Areas.Admin.ViewModels.ServiceManagementViewModel
+@using EeD_BE_EeD.Models
+@using EeD_BE_EeD.Areas.Admin.ViewModels
+@{
+    ViewData["Title"] = "Dashboard Services Management";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/Admin/css/ServicesAdmin.css" asp-append-version="true" />
+}
+
+<main class="content">
+    <div class="container">
+        <h2 class="page-title">Services Management</h2>
+
+        <!-- Filters and Stats Wrapper -->
+        <div class="page-section">
+            <!-- Filters -->
+            <form class="filters filters-form" method="get">
+                <!-- Category Filter -->
+                <label>
+                    <span>Category</span>
+                    <select name="categoryId">
+                        <option value="">All</option>
+                        @foreach (var cat in Model.Categories ?? new List<CategoryVm>())
+                        {
+                            <option value="@cat.Id" selected="@(Model.CategoryId == cat.Id)">@cat.Name</option>
+                        }
+                    </select>
+                </label>
+
+                <!-- Status Filter -->
+                <label>
+                    <span>Status</span>
+                    <select name="status">
+                        <option value="">All</option>
+                        <option value="Pending" selected="@(Model.Status == ServiceStatus.Pending)">Pending</option>
+                        <option value="Active" selected="@(Model.Status == ServiceStatus.Active)">Active</option>
+                        <option value="Removed" selected="@(Model.Status == ServiceStatus.Removed)">Removed</option>
+                    </select>
+                </label>
+
+                <!-- City Filter -->
+                <label>
+                    <span>City</span>
+                    <select name="city">
+                        <option value="">All</option>
+                        @foreach (var c in Model.AvailableCities ?? new List<string>())
+                        {
+                            <option value="@c" selected="@(Model.City == c)">@c</option>
+                        }
+                    </select>
+                </label>
+
+                <button type="submit" class="btn">Filter</button>
+            </form>
+
+            <div class="stats">
+                <div class="card"><p class="label">Total Services</p><p class="value">@Model.ServicesTotalCount</p></div>
+                <div class="card"><p class="label">Pending Services</p><p class="value">@Model.Services?.Count(s => s.Status == ServiceStatus.Pending)</p></div>
+                <div class="card"><p class="label">Removed Services</p><p class="value">@Model.Services?.Count(s => s.Status == ServiceStatus.Removed)</p></div>
+            </div>
+        </div>
+
+        <h3 class="page-subtitle">Categories</h3>
+        <section class="table-wrap categories-wrap" id="categories">
+            <div class="table-scroll">
+
+                <div class="table-header-actions">
+                    <button class="btn btn-primary add-category-btn" type="button" data-open="addCategoryModal" data-id="0">
+                        <span class="material-symbols-outlined">add</span> Add Category
+                    </button>
+                </div>
+
+                <table class="data-table categories-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Active</th>
+                            <th class="text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var cat in Model.Categories ?? new List<CategoryVm>())
+                        {
+                            <tr>
+                                <td class="cell-strong">@cat.Name</td>
+                                <td class="cell-dim">@cat.Description</td>
+                                <td>
+                                    @if (cat.IsActive) { <span class="badge badge--active">Active</span> } else { <span class="badge badge--inactive">Inactive</span> }
+                                </td>
+                                <td>
+                                    <div class="actions">
+                                        <button class="icon-btn" type="button" data-open="editCategoryModal-@cat.Id" data-id="@cat.Id"><span class="material-symbols-outlined">edit</span></button>
+                                        <button class="icon-btn danger" type="button" data-open="deleteCategoryModal-@cat.Id" data-id="@cat.Id"><span class="material-symbols-outlined">delete</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="pagination">
+                    <span class="pagination__summary">
+                        Showing <strong>@((Model.CategoriesPage - 1) * 5 + 1)</strong> to <strong>@Math.Min(Model.CategoriesPage * 5, Model.CategoriesTotalCount)</strong> of
+                        <strong>@Model.CategoriesTotalCount</strong> Entries
+                    </span>
+                    <div class="pager">
+                        @if (Model.CategoriesPage > 1)
+                        {
+                            <a class="pager__edge" aria-label="Previous" href="@Url.Action("Index", new { categoriesPage = Model.CategoriesPage - 1, pageSize = 5 })">
+                                <span class="material-symbols-outlined">chevron_left</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <span class="pager__edge is-disabled" aria-disabled="true">
+                                <span class="material-symbols-outlined">chevron_left</span>
+                            </span>
+                        }
+
+                        @for (int p = 1; p <= (int)Math.Ceiling((double)Model.CategoriesTotalCount / 5); p++)
+                        {
+                            var cls = p == Model.CategoriesPage ? "pager__page pager__page--active" : "pager__page";
+                            <a class="@cls" href="@Url.Action("Index", new { categoriesPage = p, pageSize = 5 })">@p</a>
+                        }
+
+                        @if (Model.CategoriesPage < (int)Math.Ceiling((double)Model.CategoriesTotalCount / 5))
+                        {
+                            <a class="pager__edge" aria-label="Next" href="@Url.Action("Index", new { categoriesPage = Model.CategoriesPage + 1, pageSize = 5 })">
+                                <span class="material-symbols-outlined">chevron_right</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <span class="pager__edge is-disabled" aria-disabled="true">
+                                <span class="material-symbols-outlined">chevron_right</span>
+                            </span>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <h3 class="page-subtitle">Services</h3>
+        <section class="table-wrap" id="services">
+            <div class="table-scroll">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Service Title</th>
+                            <th>User Name</th>
+                            <th>Category</th>
+                            <th>Exchange Skill</th>
+                            <th>Status</th>
+                            <th class="text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var s in Model.Services ?? new List<ServiceVm>())
+                        {
+                            <tr>
+                                <td class="cell-strong">@s.Title</td>
+                                <td class="cell-dim">@s.UserName</td>
+                                <td class="cell-dim">@s.Category</td>
+                                <td class="cell-dim">@s.ExchangeSkill</td>
+                                <td>
+                                    @if (s.Status == ServiceStatus.Active) { <span class="badge badge--active">Active</span> }
+                                    else if (s.Status == ServiceStatus.Pending) { <span class="badge badge--pending">Pending</span> }
+                                    else { <span class="badge badge--removed">Removed</span> }
+                                </td>
+                                <td>
+                                    <div class="actions">
+                                        <button class="icon-btn" type="button" data-open="viewServiceModal-@s.Id" data-id="@s.Id"><span class="material-symbols-outlined">visibility</span></button>
+                                        <button class="icon-btn" type="button" data-open="approveServiceModal-@s.Id" data-id="@s.Id"><span class="material-symbols-outlined">check_circle</span></button>
+                                        <button class="icon-btn danger" type="button" data-open="deleteServiceModal-@s.Id" data-id="@s.Id"><span class="material-symbols-outlined">delete</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <!-- Updated pagination to allow dynamic rows per page with Next and Previous buttons -->
+                <div class="pagination">
+                    <span class="pagination__summary">
+                        Showing <strong>@((Model.ServicesPage - 1) * Model.PageSize + 1)</strong> to <strong>@Math.Min(Model.ServicesPage * Model.PageSize, Model.ServicesTotalCount)</strong> of
+                        <strong>@Model.ServicesTotalCount</strong> Entries
+                    </span>
+                    <div class="pager">
+                        @if (Model.ServicesPage > 1)
+                        {
+                            <a class="pager__edge" aria-label="Previous" href="@Url.Action("Index", new { page = Model.ServicesPage - 1, pageSize = Model.PageSize })">
+                                <span class="material-symbols-outlined">chevron_left</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <span class="pager__edge is-disabled" aria-disabled="true">
+                                <span class="material-symbols-outlined">chevron_left</span>
+                            </span>
+                        }
+
+                        @for (int p = 1; p <= (int)Math.Ceiling((double)Model.ServicesTotalCount / Model.PageSize); p++)
+                        {
+                            var cls = p == Model.ServicesPage ? "pager__page pager__page--active" : "pager__page";
+                            <a class="@cls" href="@Url.Action("Index", new { page = p, pageSize = Model.PageSize })">@p</a>
+                        }
+
+                        @if (Model.ServicesPage < (int)Math.Ceiling((double)Model.ServicesTotalCount / Model.PageSize))
+                        {
+                            <a class="pager__edge" aria-label="Next" href="@Url.Action("Index", new { page = Model.ServicesPage + 1, pageSize = Model.PageSize })">
+                                <span class="material-symbols-outlined">chevron_right</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <span class="pager__edge is-disabled" aria-disabled="true">
+                                <span class="material-symbols-outlined">chevron_right</span>
+                            </span>
+                        }
+                    </div>
+                    <form method="get" class="rows-per-page-form">
+                        <label for="rowsPerPage">Rows per page:</label>
+                        <select id="rowsPerPage" name="pageSize" onchange="this.form.submit()">
+                            @{
+                                var options = new[] { 5, 10, 20 };
+                                foreach (var option in options)
+                                {
+                                    if (Model.PageSize == option)
+                                    {
+                                        <option value="@option" selected="selected">@option</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@option">@option</option>
+                                    }
+                                }
+                            }
+                        </select>
+                        <input type="hidden" name="page" value="1" />
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+</main>
+
+@* Modals remain unchanged *@
+@foreach (var cat in Model.Categories ?? new List<CategoryVm>())
+{
+    <div class="modal-backdrop" id="editCategoryModal-@cat.Id" role="dialog" aria-modal="true" hidden>
+        <div class="modal">
+            <h3 class="modal-title">Edit Category</h3>
+            <form class="modal-body" asp-area="Admin" asp-controller="Services" asp-action="EditCategory" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="Id" value="@cat.Id" />
+                <div class="field"><label>Category Name</label><input name="Name" type="text" value="@cat.Name" required /></div>
+                <div class="field"><label>Description</label><textarea name="Description">@cat.Description</textarea></div>
+                <div class="checkbox-row"><input type="checkbox" name="IsActive" @(cat.IsActive ? "checked" : "") /><label>Is Active</label></div>
+                <div class="error-text"></div>
+                <div class="modal-actions"><button type="button" class="btn btn-secondary" data-close="editCategoryModal-@cat.Id">Cancel</button><button type="submit" class="btn btn-primary">Save</button></div>
+            </form>
+        </div>
+    </div>
+}
+
+@foreach (var cat in Model.Categories ?? new List<CategoryVm>())
+{
+    <div class="modal-backdrop" id="deleteCategoryModal-@cat.Id" role="dialog" hidden>
+        <div class="modal">
+            <h3 class="modal-title">Delete Category</h3>
+            <form class="modal-body" asp-area="Admin" asp-controller="Services" asp-action="DeleteCategory" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="Id" value="@cat.Id" />
+                <p>Are you sure you want to delete "@cat.Name"?</p>
+                <div class="error-text"></div>
+                <div class="modal-actions"><button type="button" class="btn btn-secondary" data-close="deleteCategoryModal-@cat.Id">Cancel</button><button type="submit" class="btn btn-primary">Delete</button></div>
+            </form>
+        </div>
+    </div>
+}
+
+@foreach (var s in Model.Services ?? new List<ServiceVm>())
+{
+    <div class="modal-backdrop" id="viewServiceModal-@s.Id" role="dialog" hidden>
+        <div class="modal">
+            <h3 class="modal-title">Service Details</h3>
+            <div class="modal-body">
+                <div class="details-grid">
+                    <div class="term">Title</div><div class="value">@s.Title</div>
+                    <div class="term">User</div><div class="value">@s.UserName</div>
+                    <div class="term">Category</div><div class="value">@s.Category</div>
+                    <div class="term">Exchange Skill</div><div class="value">@s.ExchangeSkill</div>
+                    <div class="term">Created At</div><div class="value">@s.CreatedAt.ToString("yyyy-MM-dd")</div>
+                    <div class="term">Status</div><div class="value">@s.Status</div>
+                </div>
+                <div class="modal-actions"><button type="button" class="btn btn-primary" data-close="viewServiceModal-@s.Id">Close</button></div>
+            </div>
+        </div>
+    </div>
+}
+
+@foreach (var s in Model.Services ?? new List<ServiceVm>())
+{
+    <div class="modal-backdrop" id="approveServiceModal-@s.Id" role="dialog" hidden>
+        <div class="modal">
+            <h3 class="modal-title">Approve Service</h3>
+            <form class="modal-body" asp-area="Admin" asp-controller="Services" asp-action="Approve" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@s.Id" />
+                <p>Approve service "@s.Title"?</p>
+                <div class="error-text"></div>
+                <div class="modal-actions"><button type="button" class="btn btn-secondary" data-close="approveServiceModal-@s.Id">Cancel</button><button type="submit" class="btn btn-primary">Approve</button></div>
+            </form>
+        </div>
+    </div>
+}
+
+@foreach (var s in Model.Services ?? new List<ServiceVm>())
+{
+    <div class="modal-backdrop" id="deleteServiceModal-@s.Id" role="dialog" hidden>
+        <div class="modal">
+            <h3 class="modal-title">Delete Service</h3>
+            <form class="modal-body" asp-area="Admin" asp-controller="Services" asp-action="Delete" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@s.Id" />
+                <p>Are you sure you want to delete "@s.Title"?</p>
+                <div class="error-text"></div>
+                <div class="modal-actions"><button type="button" class="btn btn-secondary" data-close="deleteServiceModal-@s.Id">Cancel</button><button type="submit" class="btn btn-primary">Delete</button></div>
+            </form>
+        </div>
+    </div>
+}
+
+<script src="~/Admin/js/ServicesAdmin.js" asp-append-version="true"></script>
